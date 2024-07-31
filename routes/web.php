@@ -1,7 +1,12 @@
 <?php
 
+use App\Livewire\Electronics\ElectronicProductsByCategory;
+use App\Livewire\Electronics\ElectronicsHome;
 use App\Livewire\HomePage;
 use App\Livewire\ProductsByCategoryPage;
+use App\Livewire\Restaurant\RestaurantHome;
+use App\Livewire\Restaurant\RestaurantMenu;
+use App\Livewire\Restaurant\RestaurantOffer;
 use App\Livewire\Wishlist;
 use App\Livewire\ProductDetailPage;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+// Clothing Category
+
+
 Route::get('/{seller_id}', HomePage::class)->name('index');
 
 Route::get('/{seller_id}/{category_id}', ProductsByCategoryPage::class)->name('list-products-by-category');
@@ -19,3 +27,20 @@ Route::get('/{seller_id}/{category_id}', ProductsByCategoryPage::class)->name('l
 Route::get('/page/product/detail/{productId}', ProductDetailPage::class)->name('product-details');
 
 Route::get('/page/my-wishlist/detail', Wishlist::class)->name('list-wishlist');
+
+
+// Restaurant Category
+
+Route::get('/shop/restaurant/{seller_id}', RestaurantHome::class)->name('restaurant-shop-home');
+
+Route::get('/shop/restaurant/{seller_id}/menu', RestaurantMenu::class)->name('restaurant-shop-menu');
+
+Route::get('/shop/restaurant/{seller_id}/offers', RestaurantOffer::class)->name('restaurant-shop-offer');
+
+
+// Electronics Category
+
+
+Route::get('/shop/electronics/{seller_id}', ElectronicsHome::class)->name('electronics-shop-home');
+
+Route::get('/shop/electronics/{seller_id}/category/{category_id}', ElectronicProductsByCategory::class)->name('electronics-products-by-category');
