@@ -76,7 +76,12 @@
                         <div class="swiper-slide">
                             <div class="best-selling-single">
                                 <div class="best-selling-img">
-                                    <img src="{{ $product->Image }}">
+                                    @php
+                                        $images = json_decode($product->Image, true);
+                                        $firstImage = $images[0] ?? $product->Image;
+                                    @endphp
+                                        
+                                    <img src="{{ $firstImage }}" alt="{{ $product->productName }}">
                                     <div class="discout-text">
                                         <span>₹{{ $this->calculateDiscountAmount($product->product_stock->price, $product->product_stock->mrp) }} OFF</span>
                                     </div>
@@ -86,7 +91,9 @@
                                     </div>
                                 </div>
                                 <div class="device-name mt-3">
-                                    <h3 class="mb-0">{{ $product->productName }}</h3>
+                                    <a href="{{ route('electronic-product-details', ['seller_id' => $seller_id, 'productId' => $product->id]) }}" wire:navigate>
+                                        <h3 class="mb-0">{{ $product->productName }}</h3>
+                                    </a>
                                     <p>{!! $product->description !!}</p>
                                 </div>
                                 <div class="product-price-wrap d-flex align-items-center">
@@ -123,7 +130,12 @@
                         <div class="swiper-slide">
                             <div class="best-selling-single">
                                 <div class="best-selling-img">
-                                    <img src="{{ $product->Image }}">
+                                    @php
+                                        $images = json_decode($product->Image, true);
+                                        $firstImage = $images[0] ?? $product->Image;
+                                    @endphp
+                                        
+                                    <img src="{{ $firstImage }}" alt="{{ $product->productName }}">
                                     <div class="discout-text">
                                         <span>₹{{ $this->calculateDiscountAmount($product->product_stock->price, $product->product_stock->mrp) }} OFF</span>
                                     </div>
@@ -133,7 +145,9 @@
                                     </div>
                                 </div>
                                 <div class="device-name mt-3">
-                                    <h3 class="mb-0">{{ $product->productName }}</h3>
+                                    <a href="{{ route('electronic-product-details', ['seller_id' => $seller_id, 'productId' => $product->id]) }}" wire:navigate>
+                                        <h3 class="mb-0">{{ $product->productName }}</h3>
+                                    </a>
                                     <p>{!! $product->description !!}</p>
                                 </div>
                                 <div class="product-price-wrap d-flex align-items-center">
