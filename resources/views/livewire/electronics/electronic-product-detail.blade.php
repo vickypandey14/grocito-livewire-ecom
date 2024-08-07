@@ -347,7 +347,7 @@
     <section class="best-selling mt-4 mb-4">
         <div class="best-selling-inner">
             <h2>Best Selling</h2>
-            <div class="swiper best-selling-swiper">
+            <div class="swiper best-selling-swiper mt-3">
                 <div class="swiper-wrapper">
                     @foreach ($bestSellingProducts as $bestProduct)
                         <div class="swiper-slide">
@@ -361,14 +361,12 @@
                                     <div class="discout-text">
                                         <span>₹{{ $this->calculateDiscountAmount($bestProduct->product_stock->price, $bestProduct->product_stock->mrp) }} OFF</span>
                                     </div>
-                                    <div class="discout-text d-flex align-items-center rating-text">
-                                        <span>4.5</span>
-                                        <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    </div>
                                 </div>
                                 <div class="device-name">
-                                    <h3 class="mb-0">{{ $bestProduct->productName }}</h3>
-                                    <p>{!! $bestProduct->description !!}</p>
+                                    <a href="{{ route('electronic-product-details', ['seller_id' => $seller_id, 'productId' => $product->id]) }}" wire:navigate>
+                                        <h3 class="mb-0">{{ $product->productName }}</h3>
+                                    </a>
+                                    <p>{!! $product->description !!}</p>
                                 </div>
                                 <div class="product-price-wrap d-flex align-items-center">
                                     <span>-{{ $this->calculateDiscount($bestProduct->product_stock->price, $bestProduct->product_stock->mrp) }}%</span>

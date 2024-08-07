@@ -60,7 +60,10 @@ class ElectronicProductDetail extends Component
             abort(404);
         }
 
-        // dd($this->colors);
+        // echo '<pre>';
+        // echo json_encode($this->bestSellingProducts, JSON_PRETTY_PRINT);
+        // echo '</pre>';
+        // dd();
 
         return view('livewire.electronics.electronic-product-detail', [
             'product' => $this->product,

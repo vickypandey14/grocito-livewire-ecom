@@ -7,7 +7,6 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\UserBanner;
 use App\Models\SellerBanner;
-
 use Livewire\Component;
 
 class RestaurantHome extends Component
@@ -21,6 +20,7 @@ class RestaurantHome extends Component
     public $products = [];
     public $categories;
     public $addons = [];
+    public $selectedAddons = [];
 
     public function mount($seller_id)
     {
@@ -65,6 +65,7 @@ class RestaurantHome extends Component
         $this->quantity = 1;
         $this->totalPrice = $this->cartProduct->product_stock->price;
         $this->addons = [];
+        $this->selectedAddons = [];
 
         if ($this->cartProduct->add_on_name && $this->cartProduct->add_on_price) {
             $addOnNames = json_decode($this->cartProduct->add_on_name, true);
@@ -95,7 +96,19 @@ class RestaurantHome extends Component
 
     public function updatedQuantity()
     {
-        $this->totalPrice = $this->cartProduct->product_stock->price * $this->quantity;
+        $basePrice = $this->cartProduct->product_stock->price * $this->quantity;
+        $addonPrice = array_sum(array_column($this->selectedAddons, 'price')) * $this->quantity;
+        $this->totalPrice = $basePrice + $addonPrice;
+    }
+
+    public function toggleAddon($addonName, $addonPrice)
+    {
+        if (isset($this->selectedAddons[$addonName])) {
+            unset($this->selectedAddons[$addonName]);
+        } else {
+            $this->selectedAddons[$addonName] = ['name' => $addonName, 'price' => $addonPrice];
+        }
+        $this->updatedQuantity();
     }
 
     public function render()
@@ -152,7 +165,5 @@ class RestaurantHome extends Component
             'selectedCategory' => $this->selectedCategory,
             'seller_center_banners' => $seller_center_banners,
         ])->layout('components.layouts.restaurant-layout');
-        
     }
-    
 }

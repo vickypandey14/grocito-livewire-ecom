@@ -153,6 +153,7 @@
                                 </div>
                             </div>
                         @endforeach
+
                     </div>
                 </div>
             </section>
@@ -187,7 +188,7 @@
                                 </div>
                             </div>
                         @endif
-
+    
                         <div class="plus-minus-btn d-flex align-items-center">
                             <div class="quantity-txt">
                                 <p class="mb-0">Quantity:</p>
@@ -198,18 +199,15 @@
                                 <span class="plus" wire:click="incrementQuantity">+</span>
                             </div>
                         </div>
-
+    
                         @if ($addons)
                             <div class="add-ons-sec">
                                 <h3>Addons</h3>
                                 <div class="add-ons-wrap d-flex">
-
+    
                                     @foreach ($addons as $addon)
-                                        <div class="add-ons d-flex">
+                                        <div class="add-ons d-flex" wire:click="toggleAddon('{{ $addon['name'] }}', {{ $addon['price'] }})">
                                             <div class="add-on-image">
-
-                                                {{-- I've added dummy addon image here because there is no column of addon image in database --}}
-                                                
                                                 <img src="https://cdn-icons-png.flaticon.com/512/288/288851.png">
                                             </div>
                                             <div class="add-ons-txt">
@@ -224,17 +222,14 @@
                                 </div>
                             </div>
                         @endif
-
-                        <div class="special-instruction d-none">
-                            <h3>Special Instructions</h3>
-                            <div class="instruction-area">
-                                <textarea placeholder="Add note" class="h-12 w-full rounded-lg border py-1.5 px-2 placeholder:text-[10px] placeholder:text-[#6E7191] border-[#D9DBE9]"></textarea>
-                            </div>
-                        </div>
+    
                         <div class="customize-taste">
                             <h3>Customise as per your taste</h3>
                             <div class="customise-inner-wrap">
                                 <h2>Quantity</h2>
+    
+                                {{-- repeat --}}
+    
                                 <div class="quantity-options-wrap">
                                     <div class="quantity-opt-left">
                                     <div class="d-flex">
@@ -250,40 +245,7 @@
                                             <input type="radio" id="test1" name="radio-group" checked>
                                     </div>
                                 </div>
-                                <div class="quantity-options-wrap">
-                                    <div class="quantity-opt-left">
-                                        <div class="d-flex">
-                                            <div class="quantity-opt-left-img">
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/1200px-Veg_symbol.svg.png">
-                                            </div>
-                                            <div class="quantity-opt-left-txt">
-                                                <p class="mb-0">500 Ml</p>
-                                            </div>
-                                        </div>
-                                        <div class="quantity-opt-left-price"><p class="mb-0">₹ 124</p></div>
-                                    </div>
-                                    <div class="quantity-opt-rgt d-flex align-items-center">
-                                        
-                                            <input type="radio" id="test1" name="radio-group">
-                                    </div>
-                                </div>
-                                <div class="quantity-options-wrap">
-                                    <div class="quantity-opt-left">
-                                        <div class="d-flex">
-                                            <div class="quantity-opt-left-img">
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/1200px-Veg_symbol.svg.png">
-                                            </div>
-                                            <div class="quantity-opt-left-txt">
-                                                <p class="mb-0">Family Pack {1000 Ml}</p>
-                                            </div>
-                                        </div>
-                                        <div class="quantity-opt-left-price"><p class="mb-0">₹ 274</p></div>
-                                    </div>
-                                    <div class="quantity-opt-rgt d-flex align-items-center">
-                                        
-                                            <input type="radio" id="test1" name="radio-group">
-                                    </div>
-                                </div>
+    
                             </div>
                         </div>
                         <div class="add-to-cart">
