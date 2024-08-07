@@ -230,21 +230,27 @@
     
                                 {{-- repeat --}}
     
-                                <div class="quantity-options-wrap">
-                                    <div class="quantity-opt-left">
-                                    <div class="d-flex">
-                                            <div class="quantity-opt-left-img">
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/1200px-Veg_symbol.svg.png">
-                                            </div>
-                                            <div class="quantity-opt-left-txt">
-                                                <p class="mb-0">500 Ml</p>
+                                @foreach ($sizes as $id => $size)
+
+                                    <div class="quantity-options-wrap">
+                                        <div class="quantity-opt-left">
+                                            <div class="d-flex">
+                                                <div class="quantity-opt-left-img">
+                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/1200px-Veg_symbol.svg.png">
+                                                </div>
+                                                <div class="quantity-opt-left-txt">
+                                                    <p class="mb-0">{{ $size }}</p>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="quantity-opt-rgt">
+                                            <input type="radio" id="size-{{ $id }}" name="radio-group" value="{{ $id }}" wire:model="selectedSize">
+                                        </div>                                        
                                     </div>
-                                    <div class="quantity-opt-rgt">
-                                            <input type="radio" id="test1" name="radio-group" checked>
-                                    </div>
-                                </div>
+
+                                @endforeach   
+                                
+                                
     
                             </div>
                         </div>

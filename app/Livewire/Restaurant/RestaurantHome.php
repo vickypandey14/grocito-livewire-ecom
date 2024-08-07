@@ -5,9 +5,9 @@ namespace App\Livewire\Restaurant;
 use App\Models\Seller;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\UserBanner;
 use App\Models\SellerBanner;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantHome extends Component
 {
@@ -21,6 +21,7 @@ class RestaurantHome extends Component
     public $categories;
     public $addons = [];
     public $selectedAddons = [];
+    public $sizes = [];
 
     public function mount($seller_id)
     {
@@ -66,6 +67,10 @@ class RestaurantHome extends Component
         $this->totalPrice = $this->cartProduct->product_stock->price;
         $this->addons = [];
         $this->selectedAddons = [];
+        $this->sizes = DB::table('product_stocks')
+        ->where('product_id', $productId)
+        ->pluck('s_w', 'id')
+        ->toArray();
 
         if ($this->cartProduct->add_on_name && $this->cartProduct->add_on_price) {
             $addOnNames = json_decode($this->cartProduct->add_on_name, true);
@@ -164,6 +169,7 @@ class RestaurantHome extends Component
             'popular_products' => $popular_products,
             'selectedCategory' => $this->selectedCategory,
             'seller_center_banners' => $seller_center_banners,
+            'sizes' => $this->sizes,
         ])->layout('components.layouts.restaurant-layout');
     }
 }
