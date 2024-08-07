@@ -27,6 +27,7 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class,'categoryId','id'); 
     }
+    
     public function sub_category()
     {
         return $this->belongsTo(SubCategory::class,'subCategoryId','id'); 
@@ -35,6 +36,11 @@ class Product extends Model
     public function wishlist()
     {
         return $this->hasMany(Wishlist::class);
+    }
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class, 'seller_id', 'id');
     }
     
 }

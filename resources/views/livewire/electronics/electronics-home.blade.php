@@ -28,7 +28,7 @@
         </div>
     </section>
 
-    {{-- Category --}}
+    {{-- Categories --}}
 
     @if($categories->isEmpty())
 

@@ -73,6 +73,7 @@
                                 <p class="mb-0">inclusive of all taxes</p>
                             </div>
                         </div>
+                        
                         <form>
                             <div class="product-size-wrap">
                                 <h3 class="fs-20 fw-500 mb-3">Select Size</h3>
@@ -104,66 +105,67 @@
 
                         <div class="check-pincode">
                             <h3 class="fs-20 fw-500 mb-3">Delivery Options</h3>
+                            
                             <div class="pincode-box">
-                                <input type="text" placeholder="Enter pincode" class="pincode-code" value="" name="pincode">
+                                <input type="number" placeholder="Enter pincode" class="pincode-code" name="pincode">
                                 <input type="submit" class="pincode-check pincode-button" value="Check">
                             </div>
-                            <div class="pincode-services">
-                                  <ul class="pincode-serviceability-list mt-2">
-                                    <li class="pincode-serviceabilityItem">
-                                      <svg viewBox="0 0 24 25" class="pincode-serviceabilityIcon">
-                                        <g fill="none" fill-rule="evenodd">
-                                          <path d="M0 1h24v24H0z"></path>
-                                          <path d="M21.872 12.843l-.68 3.849a1.949 1.949 0 00-.398-.819c-.377-.447-.925-.693-1.549-.693-1.024 0-1.98.669-2.395 1.601l1.159-6.571h1.703c.7 0 1.31.265 1.713.746.415.494.573 1.164.447 1.887m-3.238 5.812c-.297 0-.55-.108-.715-.306-.172-.204-.236-.486-.183-.795.123-.698.816-1.288 1.51-1.288.296 0 .55.108.716.306.17.204.235.486.18.794-.123.699-.814 1.289-1.508 1.289m-11.308 0c-.295 0-.55-.108-.715-.306-.171-.204-.236-.486-.18-.794.122-.699.814-1.289 1.508-1.289.296 0 .55.108.714.306.172.204.237.486.182.794-.123.699-.815 1.289-1.509 1.289m14.932-8.397c-.616-.731-1.518-1.134-2.546-1.134H18.2l.262-1.487A.546.546 0 0017.927 7H6.417a.543.543 0 100 1.086H17.28l-1.557 8.832h-5.8a1.965 1.965 0 00-.438-1.045c-.376-.447-.926-.693-1.548-.693-1.074 0-2.074.734-2.454 1.738h-.356l.143-.811a.543.543 0 10-1.069-.188l-.256 1.447a.546.546 0 00.535.637h.86c.045.389.194.753.438 1.045.375.446.925.693 1.548.693 1.075 0 2.075-.734 2.454-1.738h6.867c.044.389.194.752.439 1.045.375.446.925.693 1.547.693 1.075 0 2.075-.734 2.454-1.738h.52c.264 0 .49-.189.534-.449l.799-4.523c.184-1.043-.058-2.028-.683-2.773" fill="#535766"></path>
-                                          <path d="M9.812 9.667c0-.3-.243-.543-.543-.543H1.543a.544.544 0 000 1.086h7.726c.3 0 .543-.243.543-.543M9.387 12.074c0-.3-.243-.543-.543-.543h-5.82a.543.543 0 100 1.086h5.82c.3 0 .543-.243.543-.543M8.42 13.938H4.502a.543.543 0 100 1.086H8.42a.543.543 0 100-1.086" fill="#535766"></path>
-                                        </g>
-                                      </svg>
-                                      <h4 class="pincode-serviceabilityTitle">Get it by Mon, Jul 22</h4>
-                                    </li>
-                                    <li class="pincode-serviceabilityItem">
-                                      <svg id="prefix__Layer_1" data-name="Layer 1" viewBox="0 0 24 24" class="pincode-serviceabilityIcon">
-                                        <defs>
-                                          <mask id="prefix__mask" x="0" y="0" width="24" height="24" maskUnits="userSpaceOnUse">
-                                            <g id="prefix__b">
-                                              <path id="prefix__a" class="prefix__cls-1" d="M0 0h24v24H0z"></path>
-                                            </g>
-                                          </mask>
-                                          <mask id="prefix__mask-2" x="5.17" y="2" width="13.59" height="20" maskUnits="userSpaceOnUse">
-                                            <g id="prefix__d">
-                                              <path id="prefix__c" class="prefix__cls-1" d="M5.17 2h13.59v20H5.17z"></path>
-                                            </g>
-                                          </mask>
-                                          <style>
-                                            .prefix__cls-1,
-                                            .prefix__cls-4 {
-                                              fill: #fff;
-                                              fill-rule: evenodd
-                                            }
 
-                                            .prefix__cls-4 {
-                                              fill: #535766
-                                            }
-                                          </style>
-                                        </defs>
-                                        <g mask="url(#prefix__mask)">
-                                          <g mask="url(#prefix__mask-2)">
-                                            <path class="prefix__cls-4" d="M17.59 18v2.47a1.17 1.17 0 010 .32 1.13 1.13 0 01-.32 0h-2.76a4.18 4.18 0 01-4-3.48h1.14a.57.57 0 00.57-.57.58.58 0 00-.57-.58H6.84a1.17 1.17 0 01-.45-.05 1.27 1.27 0 010-.44v-3.63-8.5a.51.51 0 01.09-.35.44.44 0 01.33-.08h6.08a1.1 1.1 0 01.31 0 1.31 1.31 0 010 .33v7.15a.59.59 0 00.58.58.58.58 0 00.57-.59V8.91l2.23 2.74.31.42a2.5 2.5 0 01.74 1.57v4.38m1.17-4.36a3.55 3.55 0 00-1-2.3l-.3-.39-3.17-3.89V3.52c0-1-.48-1.5-1.5-1.5H11C9.64 2 8.19 2 6.78 2a1.54 1.54 0 00-1.17.42 1.59 1.59 0 00-.44 1.18V15.72c0 1.18.46 1.64 1.65 1.64h2.47A5.31 5.31 0 0014.51 22h2.74a1.32 1.32 0 001.5-1.5V18v-4.36"></path>
-                                          </g>
-                                          <path class="prefix__cls-4" d="M14.54 12.57c-.71-.76-1.43-1.51-2.17-2.25a1.72 1.72 0 00-1.78-.46 1.54 1.54 0 00-1 1.3 2 2 0 00.64 1.6l2.08 2.15.53.55a3.93 3.93 0 001.08 4 .58.58 0 00.82.05.57.57 0 000-.81c-1-1.15-1.22-2.06-.75-3.14a.55.55 0 00-.11-.63l-.79-.82c-.7-.71-1.39-1.42-2.07-2.14-.27-.28-.36-.46-.33-.66A.36.36 0 0111 11a.6.6 0 01.6.18c.72.73 1.45 1.49 2.14 2.23l.92 1a.58.58 0 00.82 0 .57.57 0 000-.82l-.91-1m-3.94-3.78a.29.29 0 00.29-.28.27.27 0 00-.09-.21L9.35 6.83a1.17 1.17 0 00.52-.36 1.53 1.53 0 00.32-.62h1a.29.29 0 00.27-.31.28.28 0 00-.27-.27h-.86a2.49 2.49 0 000-.48h.87a.29.29 0 100-.58H8.37a.29.29 0 100 .58H9.7a2.56 2.56 0 010 .48H8.37a.29.29 0 000 .58h1.21a.72.72 0 01-.14.24.8.8 0 01-.7.24.3.3 0 00-.28.17.33.33 0 00.06.33l1.9 1.9a.32.32 0 00.21.08"></path>
-                                        </g>
-                                      </svg>
-                                      <h4 class="pincode-serviceabilityTitle">Pay on delivery available</h4>
-                                    </li>
-                                    <li class="pincode-serviceabilityItem">
-                                      <svg viewBox="0 0 24 24" class="pincode-serviceabilityIcon">
-                                        <g fill="#535766">
-                                          <path d="M15.19 8.606V4.3a.625.625 0 00-.622-.625H6.384V.672a.624.624 0 00-.407-.588.62.62 0 00-.687.178L.367 6.048a.628.628 0 000 .812l4.923 5.778a.626.626 0 00.687.182.624.624 0 00.407-.588V9.228h8.184a.62.62 0 00.621-.622zm-1.244-.625H5.762a.625.625 0 00-.621.625v1.938l-3.484-4.09L5.14 2.362V4.3c0 .344.28.625.621.625h8.184v3.056z"></path>
-                                          <path d="M22.708 13.028L17.785 7.25a.616.616 0 00-.687-.178.624.624 0 00-.407.587v3.003H8.507a.625.625 0 00-.622.625v4.304c0 .343.28.625.622.625h8.184v3.003a.624.624 0 00.621.625.626.626 0 00.473-.219l4.923-5.781a.632.632 0 000-.816zm-4.774 4.497v-1.937a.625.625 0 00-.622-.625H9.13v-3.054h8.183a.625.625 0 00.622-.625V9.347l3.484 4.09-3.484 4.088z"></path>
-                                        </g>
-                                      </svg>
-                                      <h4 class="pincode-serviceabilityTitle">Easy 14 days return &amp; exchange available</h4>
-                                    </li>
-                                  </ul>
+                            <div class="pincode-services">
+
+                                <ul class="pincode-serviceability-list mt-2">
+
+                                    @if ($product->seller->is_cod == 1)
+                                        <li class="pincode-serviceabilityItem">
+                                            <svg id="prefix__Layer_1" data-name="Layer 1" viewBox="0 0 24 24" class="pincode-serviceabilityIcon">
+                                            <defs>
+                                                <mask id="prefix__mask" x="0" y="0" width="24" height="24" maskUnits="userSpaceOnUse">
+                                                <g id="prefix__b">
+                                                    <path id="prefix__a" class="prefix__cls-1" d="M0 0h24v24H0z"></path>
+                                                </g>
+                                                </mask>
+                                                <mask id="prefix__mask-2" x="5.17" y="2" width="13.59" height="20" maskUnits="userSpaceOnUse">
+                                                <g id="prefix__d">
+                                                    <path id="prefix__c" class="prefix__cls-1" d="M5.17 2h13.59v20H5.17z"></path>
+                                                </g>
+                                                </mask>
+                                                <style>
+                                                .prefix__cls-1,
+                                                .prefix__cls-4 {
+                                                    fill: #fff;
+                                                    fill-rule: evenodd
+                                                }
+    
+                                                .prefix__cls-4 {
+                                                    fill: #535766
+                                                }
+                                                </style>
+                                            </defs>
+                                            <g mask="url(#prefix__mask)">
+                                                <g mask="url(#prefix__mask-2)">
+                                                <path class="prefix__cls-4" d="M17.59 18v2.47a1.17 1.17 0 010 .32 1.13 1.13 0 01-.32 0h-2.76a4.18 4.18 0 01-4-3.48h1.14a.57.57 0 00.57-.57.58.58 0 00-.57-.58H6.84a1.17 1.17 0 01-.45-.05 1.27 1.27 0 010-.44v-3.63-8.5a.51.51 0 01.09-.35.44.44 0 01.33-.08h6.08a1.1 1.1 0 01.31 0 1.31 1.31 0 010 .33v7.15a.59.59 0 00.58.58.58.58 0 00.57-.59V8.91l2.23 2.74.31.42a2.5 2.5 0 01.74 1.57v4.38m1.17-4.36a3.55 3.55 0 00-1-2.3l-.3-.39-3.17-3.89V3.52c0-1-.48-1.5-1.5-1.5H11C9.64 2 8.19 2 6.78 2a1.54 1.54 0 00-1.17.42 1.59 1.59 0 00-.44 1.18V15.72c0 1.18.46 1.64 1.65 1.64h2.47A5.31 5.31 0 0014.51 22h2.74a1.32 1.32 0 001.5-1.5V18v-4.36"></path>
+                                                </g>
+                                                <path class="prefix__cls-4" d="M14.54 12.57c-.71-.76-1.43-1.51-2.17-2.25a1.72 1.72 0 00-1.78-.46 1.54 1.54 0 00-1 1.3 2 2 0 00.64 1.6l2.08 2.15.53.55a3.93 3.93 0 001.08 4 .58.58 0 00.82.05.57.57 0 000-.81c-1-1.15-1.22-2.06-.75-3.14a.55.55 0 00-.11-.63l-.79-.82c-.7-.71-1.39-1.42-2.07-2.14-.27-.28-.36-.46-.33-.66A.36.36 0 0111 11a.6.6 0 01.6.18c.72.73 1.45 1.49 2.14 2.23l.92 1a.58.58 0 00.82 0 .57.57 0 000-.82l-.91-1m-3.94-3.78a.29.29 0 00.29-.28.27.27 0 00-.09-.21L9.35 6.83a1.17 1.17 0 00.52-.36 1.53 1.53 0 00.32-.62h1a.29.29 0 00.27-.31.28.28 0 00-.27-.27h-.86a2.49 2.49 0 000-.48h.87a.29.29 0 100-.58H8.37a.29.29 0 100 .58H9.7a2.56 2.56 0 010 .48H8.37a.29.29 0 000 .58h1.21a.72.72 0 01-.14.24.8.8 0 01-.7.24.3.3 0 00-.28.17.33.33 0 00.06.33l1.9 1.9a.32.32 0 00.21.08"></path>
+                                            </g>
+                                            </svg>
+                                            <h4 class="pincode-serviceabilityTitle">Cash on delivery available</h4>
+                                        </li>
+                                    @endif
+
+                                    @if ($product->return_days)
+                                        <li class="pincode-serviceabilityItem">
+                                            <svg viewBox="0 0 24 24" class="pincode-serviceabilityIcon">
+                                            <g fill="#535766">
+                                                <path d="M15.19 8.606V4.3a.625.625 0 00-.622-.625H6.384V.672a.624.624 0 00-.407-.588.62.62 0 00-.687.178L.367 6.048a.628.628 0 000 .812l4.923 5.778a.626.626 0 00.687.182.624.624 0 00.407-.588V9.228h8.184a.62.62 0 00.621-.622zm-1.244-.625H5.762a.625.625 0 00-.621.625v1.938l-3.484-4.09L5.14 2.362V4.3c0 .344.28.625.621.625h8.184v3.056z"></path>
+                                                <path d="M22.708 13.028L17.785 7.25a.616.616 0 00-.687-.178.624.624 0 00-.407.587v3.003H8.507a.625.625 0 00-.622.625v4.304c0 .343.28.625.622.625h8.184v3.003a.624.624 0 00.621.625.626.626 0 00.473-.219l4.923-5.781a.632.632 0 000-.816zm-4.774 4.497v-1.937a.625.625 0 00-.622-.625H9.13v-3.054h8.183a.625.625 0 00.622-.625V9.347l3.484 4.09-3.484 4.088z"></path>
+                                            </g>
+                                            </svg>
+                                            <h4 class="pincode-serviceabilityTitle">Easy {{ $product->return_days }} days return @if ($product->is_replaceable == 1) &amp; exchange available @endif </h4>
+                                        </li>
+                                    @endif
+
+                                </ul>
+                                
                             </div>
                         </div>
 
@@ -184,6 +186,7 @@
                                 </a>
                             </div>
                         </div>
+
                         <div class="d-none d-md-block key-feature-dektop mt-4">
                             <div class="key-feat-inner">
                                 <h3 class="fs-20 fw-500 mb-3">Highlights</h3>
@@ -192,6 +195,7 @@
                               </ul>
                           </div>
                         </div>
+
                         <div class="shop-rgt-descrip accordion" id="accordionExample">
                             <h3 class="accordion-header" id="headingOne">
                                 <button class="accordion-button show fs-26 fw-500" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -253,9 +257,11 @@
                               <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">DESCRIPTION</button>
                               </li>
+
                               <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">SPECIFICATION</button>
                               </li>
+                              
                               <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">MORE INFO</button>
                               </li>
@@ -273,15 +279,8 @@
                                       <h3 class="fs-18 fw-400 mb-3">Specifations</h3>
                                       <div class="key-feat-inner">
                                           <div class="shop-rgt-descrip-inner">
-                                            <div class="row pb-3">
-                                                <div class="col-md-4 shop-left-descrip">
-                                                    <p class="mb-0">Style Code</p>
-                                                </div>
-                                                <div class="col-md-8 shop-rgt-descrip">
-                                                    <p class="mb-0">AV104SL-COMBO</p>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                          </div>
                                       </div>
                                   </div>
                               </div>
@@ -289,22 +288,15 @@
                               <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                   <div class="more-info-tab-wrap">
                                       <div class="more-info-btm mt-2">
+
                                           <div class="more-info-btm-sngl mb-3">
-                                              <h3 class="fs-16 fw-500">Manufacturer's Details</h3>
+                                              <h3 class="fs-16 fw-500">Seller Details</h3>
                                               <ul>
-                                                  <li>
-                                                      Shop No. 7119, 7th Floor, Avadh Rituraj Textile Hub, Godadara Road, Parvat Gaam, Surat - 395 012
-                                                  </li>
+                                                  <li>Location: {{ $product->seller->location }}</li>
+                                                  <li>Store Name: {{ $product->seller->storeName }}</li>
                                               </ul>
                                           </div>
-                                          <div class="more-info-btm-sngl">
-                                              <h3 class="fs-16 fw-500">Packer's Details</h3>
-                                              <ul>
-                                                  <li>
-                                                      Shop No. 7119, 7th Floor, Avadh Rituraj Textile Hub, Godadara Road, Parvat Gaam, Surat - 395 012
-                                                  </li>
-                                              </ul>
-                                          </div>
+
                                       </div>
                                   </div>
                               </div>
@@ -330,6 +322,7 @@
 
 <section class="prdt-dtl-sec mt-5">
     <div class="prdt-rgt-dtls-wrap d-flex w-100 align-items-center justify-content-between">
+
         <div class="prdt-rgt-dtls-sngl d-flex align-items-center">
             <div class="prdt-rgt-dtls-img me-3">
                 <img src="{{ asset('shop/images/credit-card.svg')}}">
@@ -338,6 +331,7 @@
                 <p class="mb-0 fs-18">Secure payment</p>
             </div>
         </div>
+
         <div class="prdt-rgt-dtls-sngl d-flex align-items-center">
             <div class="prdt-rgt-dtls-img me-3">
                 <img src="{{ asset('shop/images/cloth.svg')}}">
@@ -346,24 +340,21 @@
                 <p class="mb-0 fs-18">Size & Fit</p>
             </div>
         </div>
-        <div class="prdt-rgt-dtls-sngl d-flex align-items-center">
-            <div class="prdt-rgt-dtls-img me-3">
-                <img src="{{ asset('shop/images/truck.svg')}}">
+
+        @if ($product->return_charge == 0 || $product->return_charge === null)
+            <div class="prdt-rgt-dtls-sngl d-flex align-items-center">
+                <div class="prdt-rgt-dtls-img me-3">
+                    <img src="{{ asset('shop/images/return.svg')}}">
+                </div>
+                <div class="prdt-rgt-dtls-txt">
+                    <p class="mb-0 fs-18">Free Returns</p>
+                </div>
             </div>
-            <div class="prdt-rgt-dtls-txt">
-                <p class="mb-0 fs-18">Free shipping</p>
-            </div>
-        </div>
-        <div class="prdt-rgt-dtls-sngl d-flex align-items-center">
-            <div class="prdt-rgt-dtls-img me-3">
-                <img src="{{ asset('shop/images/return.svg')}}">
-            </div>
-            <div class="prdt-rgt-dtls-txt">
-                <p class="mb-0 fs-18">Free Shipping & Returns</p>
-            </div>
-        </div>
+        @endif
+
     </div>
 </section>
+
 
 <section class="mens-bestseller trending-products mt-5 mb-5 pt-3">
     <div class="container">
@@ -425,6 +416,7 @@
         </div>
     </div>
 </section>
+
 
 <div class="modal fade all-dtl-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">

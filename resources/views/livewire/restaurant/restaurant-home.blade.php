@@ -102,16 +102,20 @@
 
         @endif
 
+        {{-- Displaying the Center Seller Banners Here --}}
 
         <section class="order-now pb-4">
             <div class="container">
                 <div class="order-now-inner d-flex justify-content-between">
-                    <div class="order-now-sngl">
-                        <img src="{{ asset('restaurant-shop/images/order-now1.png') }}">
-                    </div>
-                    <div class="order-now-sngl">
-                        <img src="{{ asset('restaurant-shop/images/order-now2.png') }}">
-                    </div>
+                    
+                    @foreach ($seller_center_banners as $banner)
+                        
+                        <div class="order-now-sngl">
+                            <img src="{{ $banner->image }}">
+                        </div>
+
+                    @endforeach                    
+
                 </div>
             </div>
         </section>
@@ -220,13 +224,6 @@
                                 </div>
                             </div>
                         @endif
-
-                        <div class="special-instruction">
-                            <h3>Special Instructions</h3>
-                            <div class="instruction-area">
-                                <textarea placeholder="Add note" class="h-12 w-full rounded-lg border py-1.5 px-2 placeholder:text-[10px] placeholder:text-[#6E7191] border-[#D9DBE9]"></textarea>
-                            </div>
-                        </div>
 
                         <div class="add-to-cart">
                             <a href="#">Add to Cart</a>

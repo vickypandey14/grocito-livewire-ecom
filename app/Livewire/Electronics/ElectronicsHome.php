@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Seller;
 use App\Models\UserBanner;
+use App\Models\SellerBanner;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 
@@ -47,11 +48,15 @@ class ElectronicsHome extends Component
             $products = Product::where('seller_id', $this->seller_id)->with('category')->get();
 
             $categories = Category::where('seller_id', $this->seller_id)
-                ->where('status', 'active')
-                ->where('delete_status', 0)
-                ->get();
+                                            ->where('status', 'active')
+                                            ->where('delete_status', 0)
+                                            ->get();
 
-            $seller_banner = UserBanner::where('seller_id', $this->seller_id)->where('status', 'active')->get();
+
+            $seller_banner = SellerBanner::where('seller_id', $this->seller_id)
+                                            ->where('position', 'Top')
+                                            ->where('status', 'active')
+                                            ->get();
 
 
             $best_selling_products = Product::where('seller_id', $this->seller_id)
@@ -72,7 +77,7 @@ class ElectronicsHome extends Component
         }
 
         // echo '<pre>';
-        // echo json_encode($best_selling_products, JSON_PRETTY_PRINT);
+        // echo json_encode($seller_banner, JSON_PRETTY_PRINT);
         // echo '</pre>';
         // dd();
 

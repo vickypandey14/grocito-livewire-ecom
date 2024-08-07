@@ -11,11 +11,9 @@
                         <div class="swiper-slide" wire:key="{{ $banner->id }}">
                             <div class="product-list-bnr-single" style="background-image: url('{{ $banner->image }}');">
                                 <div class="container">
-                                    <h4 class="fs-24 fw-500 color-white">T-shirt / Tops</h4>
-                                    <h3 class="fs-60 fw-700 color-white">Mad Summer Sale</h3>
-                                    <p class="color-white fs-24 fw-600">cool / colorful / comfy</p>
+                                    <h3 class="fs-60 fw-700 color-white">{{ $banner->title }}</h3>
                                     <div class="shop-now-btn d-flex">
-                                        <a href="{{ $banner->url }}" wire:navigate.hover>Shop Now</a>
+                                        <a href="{{ $banner->url }}" wire:navigate>Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -129,85 +127,38 @@
 
     {{-- Big Saving Zone --}}
 
-    <section class="big-save-zone pb-4 mt-5">
-        <div class="container">
-            <h3 class="fs-30 fw-600 text-center mb-5">Big Saving Zone</h3>
-            <div class="big-save-zone-inner">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="save-zone-sngl" style="background-image: url(./shop/images/save-zone-1.png);">
-                            <div class="save-zone-sngl-content text-left">
-                                <h3 class="fs-28 fw-600 color-white">Hawaiian Shirts</h3>
-                                <h4 class="fs-14 fw-500 color-white">Dress up in summer vibe</h4>
-                                <p class="fs-18 fw-600 color-white">UPTO 50% OFF</p>
-                                <div class="arrow-img left-img"><img src="{{ asset('shop/images/arrow.png') }}"></div>
-                                <div class="shops-now-btn d-flex pt-4 mt-4">
-                                    <a href="#">SHOP NOW</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="save-zone-sngl" style="background-image: url(./shop/images/save-zone-2.png);">
-                            <div class="save-zone-sngl-content text-right pe-3">
-                                <h3 class="fs-28 fw-600 color-white">Printed T-Shirt</h3>
-                                <h4 class="fs-14 fw-500 color-white">New Designs Every Week</h4>
-                                <p class="fs-18 fw-600 color-white">UPTO 40% OFF</p>
-                                <div class="arrow-img"><img src="{{ asset('shop/images/arrow.png') }}"></div>
-                                <div class="shops-now-btn d-flex pt-4 mt-4 justify-content-end">
-                                    <a href="#">SHOP NOW</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="save-zone-sngl" style="background-image: url(./shop/images/save-zone-3.png);">
-                            <div class="save-zone-sngl-content text-right pe-3">
-                                <h3 class="fs-28 fw-600 color-white">Cargo Joggers</h3>
-                                <h4 class="fs-14 fw-500 color-white">Move with style & comfort</h4>
-                                <p class="fs-18 fw-600 color-white">UPTO 50% OFF</p>
-                                <div class="arrow-img"><img src="{{ asset('shop/images/arrow.png') }}"></div>
-                                <div class="shops-now-btn d-flex pt-4 mt-4 justify-content-end">
-                                    <a href="#">SHOP NOW</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row mt-4 mb-4">
+    @if ($seller_center_banners->isEmpty())        
 
-                    <div class="col-md-6">
-                        <div class="save-zone-sngl" style="background-image: url(./shop/images/save-zone-4.png);">
-                            <div class="save-zone-sngl-content text-right pe-3">
-                                <h3 class="fs-28 fw-600 color-white">Urban Shirts</h3>
-                                <h4 class="fs-14 fw-500 color-white">Live In Confort</h4>
-                                <p class="fs-18 fw-600 color-white">FLAT 60% OFF</p>
-                                <div class="arrow-img"><img src="{{ asset('shop/images/arrow.png') }}"></div>
-                                <div class="shops-now-btn d-flex pt-4 mt-4 justify-content-end">
-                                    <a href="#">SHOP NOW</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    @else
 
-                    <div class="col-md-6">
-                        <div class="save-zone-sngl" style="background-image: url(./shop/images/save-zone-5.png);">
-                            <div class="save-zone-sngl-content text-right pe-3">
-                                <h3 class="fs-28 fw-600 color-white">Oversized T-Shirts</h3>
-                                <h4 class="fs-14 fw-500 color-white">Street Style Icon</h4>
-                                <p class="fs-18 fw-600 color-white">FLAT 60% OFF</p>
-                                <div class="arrow-img"><img src="{{ asset('shop/images/arrow.png') }}"></div>
-                                <div class="shops-now-btn d-flex pt-4 mt-4 justify-content-end">
-                                    <a href="#">SHOP NOW</a>
+        <section class="big-save-zone pb-4 mt-5">
+            <div class="container">
+                <h3 class="fs-30 fw-600 text-center mb-5">Big Saving Zone</h3>
+                <div class="big-save-zone-inner">
+                    <div class="row">
+
+                        @foreach ($seller_center_banners as $banner)
+                        
+                            <div class="col-md-4">
+                                <div class="save-zone-sngl" style="background-image: url({{ $banner->image }});">
+                                    <div class="save-zone-sngl-content text-left">
+                                        <h3 class="fs-28 fw-600 color-white">{{ $banner->title }}</h3>
+                                        <div class="arrow-img left-img"><img src="{{ asset('shop/images/arrow.png') }}"></div>
+                                        <div class="shops-now-btn d-flex pt-4 mt-4">
+                                            <a href="{{ $banner->url }}" wire:navigate>SHOP NOW</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                        @endforeach
+
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    @endif
 
     {{-- Mens Best Seller --}}
 
@@ -393,5 +344,57 @@
             </div>
         </div>
     </section>
+
+    
+    <div class="modal fade add-cart-modal" id="exampleModal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-header-left d-flex">
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body add-cart-modal-wrap">
+                    <div class="add-cart-modal-inner">
+                        <div class="cart-description d-flex">
+                            <div class="cart-description-left">
+                                <img src="{{ asset('shop/images/mens-bestseller.png') }}">
+                            </div>
+                            <div class="cart-description-rgt">
+                                <p>The Indian Garage Co Men White & Teal Blue Slim Fit Striped Casual Shirt</p>
+                                <div class="price-discount-wrap d-flex align-items-center">
+                                    <h4 class="fs-14 fw-500 mb-0">₹40</h4>
+                                    <h5 class="mb-0">₹60</h5>
+                                    <span class="mb-0">(62% OFF)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-size-select">
+                            <h3>Select Size</h3>
+                            <form>
+                                <div class="product-size-wrap">
+                                    <div class="custom-radios d-flex justify-content-between">
+                                        <div>
+                                            <input type="radio" id="size-1" name="size" value="size-1" checked>
+                                            <label for="size-1">
+                                                <span class="prdt-size-crcl">38
+                                                    <div class="price-show fs-12">Rs. 560</div>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="done-btn w-100 d-flex mt-4">
+                            <a href="#">Done</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>

@@ -44,7 +44,7 @@ class Wishlist extends Component
 
     public function render()
     {
-        return view('livewire.wishlist', [
+        return view('livewire.clothing.wishlist', [
             'wishlistItems' => $this->wishlistItems
         ]);
     }

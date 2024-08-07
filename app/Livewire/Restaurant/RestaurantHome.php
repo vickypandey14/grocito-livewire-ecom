@@ -6,6 +6,7 @@ use App\Models\Seller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\UserBanner;
+use App\Models\SellerBanner;
 
 use Livewire\Component;
 
@@ -110,7 +111,15 @@ class RestaurantHome extends Component
                 ->where('delete_status', 0)
                 ->get();
 
-            $seller_banner = UserBanner::where('seller_id', $this->seller_id)->where('status', 'active')->get();
+            $seller_banner = SellerBanner::where('seller_id', $this->seller_id)
+                                        ->where('position', 'Top')
+                                        ->where('status', 'active')
+                                        ->get();
+
+            $seller_center_banners = SellerBanner::where('seller_id', $this->seller_id)
+                                            ->where('status', 'active')
+                                            ->where('position', 'Center')
+                                            ->get(); 
 
             $featured_products = Product::where('seller_id', $this->seller_id)
                                             ->where('featured', 1)
@@ -124,16 +133,13 @@ class RestaurantHome extends Component
                                             ->with(['category', 'product_stock'])
                                             ->get();
         }
-        else {
-            $products = collect();
-            $categories = collect();
-            $seller_banner = collect();
-            $featured_products = collect();
-            $popular_products = collect();
+        else 
+        {
+            abort(404);
         }
 
         // echo '<pre>';
-        // echo json_encode($popular_products, JSON_PRETTY_PRINT);
+        // echo json_encode($seller_center_banners, JSON_PRETTY_PRINT);
         // echo '</pre>';
         // dd();
 
@@ -144,6 +150,7 @@ class RestaurantHome extends Component
             'featured_products' => $featured_products,
             'popular_products' => $popular_products,
             'selectedCategory' => $this->selectedCategory,
+            'seller_center_banners' => $seller_center_banners,
         ])->layout('components.layouts.restaurant-layout');
         
     }

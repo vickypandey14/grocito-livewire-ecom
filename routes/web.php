@@ -32,6 +32,7 @@ Route::get('/page/my-wishlist/detail', Wishlist::class)->name('list-wishlist');
 
 // Restaurant Category
 
+
 Route::get('/shop/restaurant/{seller_id}', RestaurantHome::class)->name('restaurant-shop-home');
 
 Route::get('/shop/restaurant/{seller_id}/menu', RestaurantMenu::class)->name('restaurant-shop-menu');

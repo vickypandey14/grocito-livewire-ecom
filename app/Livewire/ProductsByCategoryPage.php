@@ -178,7 +178,7 @@ class ProductsByCategoryPage extends Component
 
         $products = $query->get();
 
-        return view('livewire.products-by-category-page', [
+        return view('livewire.clothing.products-by-category-page', [
             'products' => $products,
             'category_name' => $this->category_name,
             'subCategories' => $this->subCategories,
