@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Electronics\ElectronicProductDetail;
 use App\Livewire\Electronics\ElectronicProductsByCategory;
 use App\Livewire\Electronics\ElectronicsHome;
 use App\Livewire\HomePage;
@@ -44,3 +45,5 @@ Route::get('/shop/restaurant/{seller_id}/offers', RestaurantOffer::class)->name(
 Route::get('/shop/electronics/{seller_id}', ElectronicsHome::class)->name('electronics-shop-home');
 
 Route::get('/shop/electronics/{seller_id}/category/{category_id}', ElectronicProductsByCategory::class)->name('electronics-products-by-category');
+
+Route::get('/shop/electronics/{seller_id}/product/detail/{productId}', ElectronicProductDetail::class)->name('electronic-product-details');

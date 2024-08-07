@@ -336,6 +336,12 @@ hr.small {
 .desktop-header{
   padding: 10px 22px;
     box-shadow: 5px 10px 10px -16px #000000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    z-index: 9;
+    background: #fff;
 } 
 .header-icons i{
   font-size: 20px;

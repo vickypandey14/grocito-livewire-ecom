@@ -1272,7 +1272,7 @@ hr.small {
     background: transparent;
 }
 .customers-review-wrap{
-	height: 700px;
+	/* height: 700px; */
 	overflow: hidden;
 }
 .customers-review-wrap.show-review{

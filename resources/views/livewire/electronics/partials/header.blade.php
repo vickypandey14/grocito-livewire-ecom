@@ -3,7 +3,12 @@
     <header class="desktop-header d-flex align-items-center justify-content-between">
         <div class="logo-cath-wrap d-flex align-items-center">
             <div class="logo">
-                <img src="{{ asset('electronics-shop/images/grocito-logo.png') }}">
+                @php
+                    $seller_id = 16;
+                @endphp
+                <a href="{{ route('electronics-shop-home', $seller_id) }}">
+                    <img src="{{ asset('electronics-shop/images/grocito-logo.png') }}" wire:navigate>
+                </a>
             </div>
             <div class="nav-catg">
                 <div id="primary_nav_wrap">
