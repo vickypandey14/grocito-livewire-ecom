@@ -223,11 +223,15 @@ img {
 .product-header{
     padding: 12px 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    position: sticky;
+    position: fixed;
     top: 0;
+    width: 100%;
     left: 0;
     z-index: 9;
     background: #fff;
+}
+.product-list-banner{
+    margin-top: 82px;
 }
 .prdt-search-wrap .form{
     position: relative;
@@ -1063,6 +1067,9 @@ img {
 }
 .hamburger-icn .sm-line{
     width: 19px;
+}
+.product-list-banner{
+    margin-top: 0;
 }
 
 }

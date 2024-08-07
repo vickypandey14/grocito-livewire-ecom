@@ -225,6 +225,13 @@
                             </div>
                         @endif
 
+                        <div class="special-instruction">
+                            <h3>Special Instructions</h3>
+                            <div class="instruction-area">
+                                <textarea placeholder="Add note" class="h-12 w-full rounded-lg border py-1.5 px-2 placeholder:text-[10px] placeholder:text-[#6E7191] border-[#D9DBE9]"></textarea>
+                            </div>
+                        </div>
+
                         <div class="add-to-cart">
                             <a href="#">Add to Cart</a>
                         </div>
@@ -234,7 +241,7 @@
         </div>
     </div>
     
-
+ 
     <!-- product click detail popup -->
 
     <div class="modal fade prdt-detail" id="productDetailModal" tabindex="-1" role="dialog" aria-labelledby="productDetailModalTitle" aria-hidden="true" wire:ignore.self>
