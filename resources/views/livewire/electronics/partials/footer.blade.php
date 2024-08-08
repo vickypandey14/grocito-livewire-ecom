@@ -3,7 +3,11 @@
     <footer class="site-fotter">
         <div class="site-fotter-inner">
             <div class="site-fotter-single logo-sngl">
-                <img src="{{ asset('electronics-shop/images/grocito-logo.png') }}">
+                @if ($seller)
+                    <a href="{{ $seller->storeLink }}" wire:navigate.hover>
+                        <img src="{{ $seller->storeLogo }}" alt="Store Logo">
+                    </a>
+                @endif
             </div>
             <div class="site-fotter-single mb-bs-info">
                 <div class="site-ftr-headline">
@@ -12,11 +16,11 @@
                 <div class="site-ftr-items">
                     <div class="site-ftr-items-wrap">
                         <i class="fa-solid fa-store" aria-hidden="true"></i>
-                        <a href="#">Clothing Store</a>
+                        <a href="#">{{ $seller->storeName }}</a>
                     </div>
                     <div class="site-ftr-items-wrap">
                         <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
-                        <a href="#">7J4P+6W, Bairagal, Uttar Pradesh 224159, India</a>
+                        <a href="#">{{ $seller->location }}</a>
                     </div>
                     <div class="site-ftr-items-wrap">
                         <i class="fa-solid fa-envelope" aria-hidden="true"></i>
@@ -46,21 +50,31 @@
                 </div>
                 <div class="site-ftr-items">
                     <div class="ftr-icn-wrap">
-                        <a href="#">
-                            <img src="{{ asset('electronics-shop/images/facebook.png') }}">
-                        </a>
-                        <a href="#">
-                            <img src="{{ asset('electronics-shop/images/instagram.png') }}">
-                        </a>
-                        <a href="#">
-                            <img src="{{ asset('electronics-shop/images/twitter.png') }}">
-                        </a>
-                        <a href="#">
-                            <img src="{{ asset('electronics-shop/images/linkdin.png') }}">
-                        </a>
-                        <a href="#">
-                            <img src="{{ asset('electronics-shop/images/youtube.png') }}">
-                        </a>
+                        @if ($seller->facebook)
+                            <a href="{{ $seller->facebook }}" target="_blank">
+                                <img src="{{ asset('shop/images/facebook.png') }}" alt="Facebook">
+                            </a>
+                        @endif
+                        @if ($seller->instagram)
+                            <a href="{{ $seller->instagram }}" target="_blank">
+                                <img src="{{ asset('shop/images/instagram.png') }}" alt="Instagram">
+                            </a>
+                        @endif
+                        @if ($seller->twitter)
+                            <a href="{{ $seller->twitter }}" target="_blank">
+                                <img src="{{ asset('shop/images/twitter.png') }}" alt="Twitter">
+                            </a>
+                        @endif
+                        @if ($seller->linkedin)
+                            <a href="{{ $seller->linkedin }}" target="_blank">
+                                <img src="{{ asset('shop/images/linkdin.png') }}">
+                            </a>
+                        @endif
+                        @if ($seller->youtube)
+                            <a href="{{ $seller->youtube }}" target="_blank">
+                                <img src="{{ asset('shop/images/youtube.png') }}" alt="YouTube">
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>

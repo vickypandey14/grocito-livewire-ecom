@@ -40,7 +40,7 @@ Route::get('/shop/restaurant/{seller_id}/menu', RestaurantMenu::class)->name('re
 Route::get('/shop/restaurant/{seller_id}/offers', RestaurantOffer::class)->name('restaurant-shop-offer');
 
 
-// Electronics Category
+// Electronics and Accessories Category
 
 
 Route::get('/shop/electronics/{seller_id}', ElectronicsHome::class)->name('electronics-shop-home');
