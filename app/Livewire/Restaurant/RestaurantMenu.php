@@ -4,6 +4,7 @@ namespace App\Livewire\Restaurant;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class RestaurantMenu extends Component
@@ -16,6 +17,9 @@ class RestaurantMenu extends Component
     public $quantity = 1;
     public $totalPrice;
     public $addons = [];
+    public $selectedAddons = [];
+    public $sizes = [];
+    public $productType = null;
 
     public function mount($seller_id)
     {
@@ -34,7 +38,26 @@ class RestaurantMenu extends Component
     public function selectCategory($categoryId)
     {
         $this->selectedCategory = Category::find($categoryId);
-        $this->products = Product::where('categoryId', $categoryId)->with('product_stock')->get();
+        $this->loadProducts();
+    }
+
+    public function loadProducts()
+    {
+        $query = Product::where('categoryId', $this->selectedCategory->id)
+                        ->where('seller_id', $this->seller_id)
+                        ->with('product_stock');
+
+        if ($this->productType) {
+            $query->where('product_type', $this->productType);
+        }
+
+        $this->products = $query->get();
+    }
+
+    public function filterByType($type)
+    {
+        $this->productType = $type;
+        $this->loadProducts();
     }
 
     public function addToCart($productId)
@@ -42,9 +65,13 @@ class RestaurantMenu extends Component
         $this->cartProduct = Product::with('product_stock')->find($productId);
         $this->quantity = 1;
         $this->totalPrice = $this->cartProduct->product_stock->price;
-
         $this->addons = [];
-        
+        $this->selectedAddons = [];
+        $this->sizes = DB::table('product_stocks')
+                        ->where('product_id', $productId)
+                        ->pluck('s_w', 'id')
+                        ->toArray();
+
         if ($this->cartProduct->add_on_name && $this->cartProduct->add_on_price) {
             $addOnNames = json_decode($this->cartProduct->add_on_name, true);
             $addOnPrices = json_decode($this->cartProduct->add_on_price, true);
@@ -74,7 +101,19 @@ class RestaurantMenu extends Component
 
     public function updatedQuantity()
     {
-        $this->totalPrice = $this->cartProduct->product_stock->price * $this->quantity;
+        $basePrice = $this->cartProduct->product_stock->price * $this->quantity;
+        $addonPrice = array_sum(array_column($this->selectedAddons, 'price')) * $this->quantity;
+        $this->totalPrice = $basePrice + $addonPrice;
+    }
+
+    public function toggleAddon($addonName, $addonPrice)
+    {
+        if (isset($this->selectedAddons[$addonName])) {
+            unset($this->selectedAddons[$addonName]);
+        } else {
+            $this->selectedAddons[$addonName] = ['name' => $addonName, 'price' => $addonPrice];
+        }
+        $this->updatedQuantity();
     }
 
     public function render()

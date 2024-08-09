@@ -279,11 +279,12 @@ img {
 .product-header{
     padding: 12px 20px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 9;
     background: #fff;
+    width: 100%;
 }
 .prdt-search-wrap .form{
     position: relative;
@@ -306,6 +307,9 @@ img {
 }
 .left-pan i{ 
    padding-left: 10px;
+}
+.shop-catg-sec-inner{
+    margin-top: 90px;
 }
 .prdt-search-wrap .form-input{
     height: 45px;
@@ -2036,6 +2040,9 @@ visibility: visible;
     }
     .check-pincode{
         padding: 15px 0;
+    }
+    .shop-catg-sec-inner{
+        margin-top: 0;
     }
 
 }

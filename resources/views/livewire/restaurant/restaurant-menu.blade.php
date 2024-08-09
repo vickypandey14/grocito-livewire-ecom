@@ -1,4 +1,5 @@
 <div>
+
     <section class="menu-category-items pb-4">
         <div class="container">
             <div class="menu-category">
@@ -20,12 +21,21 @@
                 </div>
             </div>
 
-            <div class="veg-nav-wrap">
-                <a href="javascript:void();" class="veg-btn">
-                    <img src="{{ asset('restaurant-shop/images/non-veg-img.png') }}">
-                    <p class="mb-0">Non-Veg</p>
-                </a>
-            </div>
+            @if ($selectedCategory)
+                <div class="veg-nav-wrap">
+
+                    <a href="javascript:void(0);" class="veg-btn" wire:click="filterByType('Veg')">
+                        <img src="{{ asset('restaurant-shop/images/veg-img.png') }}">
+                        <p class="mb-0">Veg</p>
+                    </a>
+
+                    <a href="javascript:void(0);" class="veg-btn" wire:click="filterByType('Non-Veg')">
+                        <img src="{{ asset('restaurant-shop/images/non-veg-img.png') }}">
+                        <p class="mb-0">Non-Veg</p>
+                    </a>
+
+                </div>
+            @endif
 
             <div class="menu-sub-catg">
                 <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -75,7 +85,9 @@
         </div>
     </section>
 
+
     <!-- Add Product Modal -->
+    
     <div class="modal fade add-popup" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalTitle" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -99,41 +111,75 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="plus-minus-btn d-flex align-items-center">
-                                <div class="quantity-txt">
-                                    <p class="mb-0">Quantity:</p>
-                                </div>
-                                <div class="qty">
-                                    <span class="minus" wire:click="decrementQuantity">-</span>
-                                    <input type="number" class="count" name="qty" value="{{ $quantity }}" wire:model="quantity">
-                                    <span class="plus" wire:click="incrementQuantity">+</span>
-                                </div>
+                        @endif
+    
+                        <div class="plus-minus-btn d-flex align-items-center">
+                            <div class="quantity-txt">
+                                <p class="mb-0">Quantity:</p>
                             </div>
-                            @if ($addons)
-                                <div class="add-ons-sec">
-                                    <h3>Addons</h3>
-                                    <div class="add-ons-wrap d-flex">
-                                        @foreach ($addons as $addon)
-                                            <div class="add-ons d-flex">
-                                                <div class="add-on-image">
-                                                    <img src="https://cdn-icons-png.flaticon.com/512/288/288851.png">
-                                                </div>
-                                                <div class="add-ons-txt">
-                                                    <p>{{ $addon['name'] }}</p>
-                                                    <div class="add-on-price">
-                                                        ₹{{ $addon['price'] }}
-                                                    </div>
+                            <div class="qty">
+                                <span class="minus" wire:click="decrementQuantity">-</span>
+                                <input type="number" class="count" name="qty" value="{{ $quantity }}" wire:model="quantity">
+                                <span class="plus" wire:click="incrementQuantity">+</span>
+                            </div>
+                        </div>
+    
+                        @if ($addons)
+                            <div class="add-ons-sec">
+                                <h3>Addons</h3>
+                                <div class="add-ons-wrap d-flex">
+    
+                                    @foreach ($addons as $addon)
+                                        <div class="add-ons d-flex" wire:click="toggleAddon('{{ $addon['name'] }}', {{ $addon['price'] }})">
+                                            <div class="add-on-image">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/288/288851.png">
+                                            </div>
+                                            <div class="add-ons-txt">
+                                                <p>{{ $addon['name'] }}</p>
+                                                <div class="add-on-price">
+                                                    ₹{{ $addon['price'] }}
                                                 </div>
                                             </div>
-                                        @endforeach
-                                    </div>
+                                        </div>
+                                    @endforeach
+                                    
                                 </div>
-                            @endif
+                            </div>
                         @endif
-                        <div class="special-instruction">
-                            <h3>Special Instructions</h3>
-                            <div class="instruction-area">
-                                <textarea placeholder="Add note" class="h-12 w-full rounded-lg border py-1.5 px-2 placeholder:text-[10px] placeholder:text-[#6E7191] border-[#D9DBE9]"></textarea>
+    
+                        <div class="customize-taste">
+                            <h3>Customise as per your taste</h3>
+                            <div class="customise-inner-wrap">
+                                <h2>Quantity</h2>
+    
+                                {{-- repeat --}}
+    
+                                @foreach ($sizes as $id => $size)
+
+                                    <div class="quantity-options-wrap">
+                                        <div class="quantity-opt-left">
+                                            <div class="d-flex">
+                                                <div class="quantity-opt-left-img">
+                                                    @if ($cartProduct->product_type == 'Veg')
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/1200px-Veg_symbol.svg.png" alt="Veg Symbol">
+                                                    @else
+                                                        <img src="https://freesvg.org/img/1531813245.png" alt="Non Veg Symbol">
+                                                    @endif
+                                                </div>
+                                                <div class="quantity-opt-left-txt">
+                                                    <p class="mb-0">{{ $size }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="quantity-opt-rgt">
+                                            <input type="radio" id="size-{{ $id }}" name="radio-group" value="{{ $id }}" wire:model="selectedSize">
+                                        </div>                                        
+                                    </div>
+
+                                @endforeach   
+                                
+                                
+    
                             </div>
                         </div>
                         <div class="add-to-cart">
@@ -144,4 +190,5 @@
             </div>
         </div>
     </div>
+
 </div>

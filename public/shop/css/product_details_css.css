@@ -698,6 +698,7 @@ input[type=range]::-ms-thumb {
 }
 .product-detail-sec-inner{
   padding-right: 16px;
+      margin-top: 90px;
 }
 .product-detail-sec-inner .col-md-3{
   width: 20%;
@@ -1207,6 +1208,7 @@ input[type=range]::-ms-thumb {
 }
 .product-detail-sec-inner{
     padding: 0 10px;
+    margin-top: 0;
 }
 .product-dtl-rgt-inner .bestseller-single-card{
     width: 50%;
@@ -1218,7 +1220,7 @@ input[type=range]::-ms-thumb {
 }
 .product-detail-sec-inner .col-md-9{
     width: 100%;
-    padding-left: 0;
+    padding-left: 4px;
     padding-right: 4px;
 }
 .bestseller-img > img{
@@ -1488,6 +1490,7 @@ input[type=range]::-ms-thumb {
 }
 .product-detail-sec{
     margin-bottom: 0px !important;
+    margin-top: 0px !important;
 }
 .mobile-category{
     overflow-y: scroll;

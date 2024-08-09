@@ -236,7 +236,11 @@
                                         <div class="quantity-opt-left">
                                             <div class="d-flex">
                                                 <div class="quantity-opt-left-img">
-                                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/1200px-Veg_symbol.svg.png">
+                                                    @if ($cartProduct->product_type == 'Veg')
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Veg_symbol.svg/1200px-Veg_symbol.svg.png" alt="Veg Symbol">
+                                                    @else
+                                                        <img src="https://freesvg.org/img/1531813245.png" alt="Non Veg Symbol">
+                                                    @endif
                                                 </div>
                                                 <div class="quantity-opt-left-txt">
                                                     <p class="mb-0">{{ $size }}</p>

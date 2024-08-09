@@ -5,15 +5,36 @@
             <div class="site-footer-inner">
                 <div class="rest-footer-left">
                     <div class="footer-logo">
-                        <img src="{{ asset('restaurant-shop/images/footer-logo.png') }}">
+                        @if ($seller)
+                            <a href="{{ $seller->storeLink }}" wire:navigate.hover>
+                                <img src="{{ $seller->storeLogo }}" alt="Store Logo">
+                            </a>
+                        @endif
                     </div>
                     <div class="social-icons">
                         <h3>Follow Us On</h3>
                         <div class="social-icons-wrap d-flex">
-                            <a href="#"><i class="fa-brands fa-facebook-f" style="color: #ff006b;"></i></a>
-                            <a href="#"><i class="fa-brands fa-x-twitter" style="color: #ff006b;"></i></a>
-                            <a href="#"><i class="fa-brands fa-instagram" style="color: #ff006b;"></i></a>
-                            <a href="#"><i class="fa-brands fa-youtube" style="color: #ff006b;"></i></a>
+
+                            @if ($seller->facebook)
+                                <a href="{{ $seller->facebook }}"><i class="fa-brands fa-facebook-f" style="color: #ff006b;"></i></a>
+                            @endif
+
+                            @if ($seller->twitter)
+                                <a href="{{ $seller->twitter }}"><i class="fa-brands fa-x-twitter" style="color: #ff006b;"></i></a>
+                            @endif
+
+                            @if ($seller->instagram)
+                                <a href="{{ $seller->instagram }}"><i class="fa-brands fa-instagram" style="color: #ff006b;"></i></a>
+                            @endif
+
+                            @if ($seller->youtube)
+                                <a href="{{ $seller->youtube }}"><i class="fa-brands fa-youtube" style="color: #ff006b;"></i></a>
+                            @endif
+
+                            @if ($seller->linkedin)
+                                <a href="{{ $seller->linkedin }}"><i class="fa-brands fa-linkedin" style="color: #ff006b;"></i></a>
+                            @endif
+
                         </div>
                     </div>
                 </div>
