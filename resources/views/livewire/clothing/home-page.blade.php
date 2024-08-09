@@ -86,8 +86,8 @@
                                                 <img src="{{ asset('shop/images/share.png') }}" alt="share icon" class="share-icn">
                                             </a>
                                         </div>
-                                        <div class="add-cart-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-1" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
-                                            <a href="javascript:void(0)" class="d-flex justify-content-center">
+                                        <div class="add-cart-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
+                                            <a href="javascript:void(0)" class="d-flex justify-content-center" wire:click="selectProduct({{ $new_arrival_product->id }})">
                                                 <p class="mb-0 pe-2 fs-14">Add To Cart</p>
                                                 <img src="{{ asset('shop/images/cart-blue.png') }}">
                                             </a>
@@ -184,7 +184,7 @@
                                             </a>
                                         </div>
                                         <div class="add-cart-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
-                                            <a href="javascript:void(0)" class="d-flex justify-content-center">
+                                            <a href="javascript:void(0)" class="d-flex justify-content-center" wire:click="selectProduct({{ $product->id }})">
                                                 <p class="mb-0 pe-2 fs-14">Add To Cart</p>
                                                 <img src="{{ asset('shop/images/cart-blue.png') }}">
                                             </a>
@@ -245,7 +245,7 @@
                                             </a>
                                         </div>
                                         <div class="add-cart-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
-                                            <a href="javascript:void(0)" class="d-flex justify-content-center">
+                                            <a href="javascript:void(0)" class="d-flex justify-content-center" wire:click="selectProduct({{ $product->id }})">
                                                 <p class="mb-0 pe-2 fs-14">Add To Cart</p>
                                                 <img src="{{ asset('shop/images/cart-blue.png') }}">
                                             </a>
@@ -307,11 +307,11 @@
                                             </a>
                                         </div>
                                         <div class="add-cart-btn" data-bs-toggle="modal" data-bs-target="#exampleModal-1">
-                                            <a href="javascript:void(0)" class="d-flex justify-content-center">
+                                            <a href="javascript:void(0)" class="d-flex justify-content-center" wire:click="selectProduct({{ $product->id }})">
                                                 <p class="mb-0 pe-2 fs-14">Add To Cart</p>
                                                 <img src="{{ asset('shop/images/cart-blue.png') }}">
                                             </a>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                     <div class="bestseller-content">
                                         <a href="{{ route('product-details', ['productId' => $product->id]) }}" wire:navigate>
@@ -346,55 +346,47 @@
     </section>
 
     
-    <div class="modal fade add-cart-modal" id="exampleModal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="modal-header-left d-flex">
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+    <div class="modal-body add-cart-modal-wrap">
+        @if($selectedProduct)
+            <div class="add-cart-modal-inner">
+                <div class="cart-description d-flex">
+                    <div class="cart-description-left">
+                        <img src="{{ $selectedProduct->Image }}" alt="{{ $selectedProduct->productName }}">
+                    </div>
+                    <div class="cart-description-rgt">
+                        <p>{{ $selectedProduct->productName }}</p>
+                        <div class="price-discount-wrap d-flex align-items-center">
+                            <h4 class="fs-14 fw-500 mb-0">₹{{ $selectedProduct->product_stock->price }}</h4>
+                            <h5 class="mb-0">₹{{ $selectedProduct->product_stock->mrp }}</h5>
+                            <span class="mb-0">({{ $this->calculateDiscount($selectedProduct->product_stock->price, $selectedProduct->product_stock->mrp) }}% OFF)</span>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-body add-cart-modal-wrap">
-                    <div class="add-cart-modal-inner">
-                        <div class="cart-description d-flex">
-                            <div class="cart-description-left">
-                                <img src="{{ asset('shop/images/mens-bestseller.png') }}">
-                            </div>
-                            <div class="cart-description-rgt">
-                                <p>The Indian Garage Co Men White & Teal Blue Slim Fit Striped Casual Shirt</p>
-                                <div class="price-discount-wrap d-flex align-items-center">
-                                    <h4 class="fs-14 fw-500 mb-0">₹40</h4>
-                                    <h5 class="mb-0">₹60</h5>
-                                    <span class="mb-0">(62% OFF)</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-size-select">
-                            <h3>Select Size</h3>
-                            <form>
-                                <div class="product-size-wrap">
-                                    <div class="custom-radios d-flex justify-content-between">
-                                        <div>
-                                            <input type="radio" id="size-1" name="size" value="size-1" checked>
-                                            <label for="size-1">
-                                                <span class="prdt-size-crcl">38
-                                                    <div class="price-show fs-12">Rs. 560</div>
-                                                </span>
-                                            </label>
-                                        </div>
+                {{-- <div class="cart-size-select">
+                    <h3>Select Size</h3>
+                    <form>
+                        <div class="product-size-wrap">
+                            <div class="custom-radios d-flex justify-content-between">
+                                @foreach($selectedProduct->product_stock as $stock)
+                                    <div>
+                                        <input type="radio" id="size-{{ $stock->id }}" name="size" value="{{ $stock->id }}">
+                                        <label for="size-{{ $stock->id }}">
+                                            <span class="prdt-size-crcl">{{ $stock->s_w }}
+                                                <div class="price-show fs-12">₹{{ $stock->price }}</div>
+                                            </span>
+                                        </label>
                                     </div>
-                                </div>
-                            </form>
+                                @endforeach
+                            </div>
                         </div>
-                        <div class="done-btn w-100 d-flex mt-4">
-                            <a href="#">Done</a>
-                        </div>
-                    </div>
+                    </form>
+                </div> --}}
+                <div class="done-btn w-100 d-flex mt-4">
+                    <a href="javascript:void(0)">Done</a>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
+    
 
 </div>

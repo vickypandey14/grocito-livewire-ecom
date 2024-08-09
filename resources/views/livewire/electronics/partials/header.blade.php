@@ -3,12 +3,11 @@
     <header class="desktop-header d-flex align-items-center justify-content-between">
         <div class="logo-cath-wrap d-flex align-items-center">
             <div class="logo">
-                @php
-                    $seller_id = 16;
-                @endphp
-                <a href="{{ route('electronics-shop-home', $seller_id) }}">
-                    <img src="{{ asset('electronics-shop/images/grocito-logo.png') }}" wire:navigate>
-                </a>
+                @if ($seller)
+                    <a href="{{ $seller->storeLink }}" wire:navigate.hover>
+                        <img src="{{ $seller->storeLogo }}" alt="Store Logo">
+                    </a>
+                @endif
             </div>
             <div class="nav-catg">
                 <div id="primary_nav_wrap">
@@ -19,24 +18,21 @@
                                 <i class="fa-solid fa-angle-down" style="color: #000"></i>
                             </div>	
                             <ul class="hover-item">
-                                <li class="dir"><a href="other.html">Phone</a>
-                                    <ul class="hover-inner-items">
-                                        <li><a href="#">Apple</a></li>
-                                        <li><a href="#">Xiomi</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dir"><a href="other.html">Laptop</a>
-                                    <ul class="hover-inner-items">
-                                        <li><a href="#">Apple</a></li>
-                                        <li><a href="#">Dell</a></li>
-                                    </ul>
-                                </li>
+
+                                @php
+                                    $seller_id = '16';
+                                @endphp
+                                
+                                @foreach($categories as $category)
+                                    <li class="dir"><a href="{{ route('electronics-products-by-category', ['seller_id' => $seller_id, 'category_id' => $category->id]) }}" wire:navigate>{{ $category->CategoryName }}</a></li>
+                                @endforeach
                             </ul>
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>            
         </div>
+
         <div class="prdt-search-wrap">
             <div class="form">
               <i class="fa fa-search"></i>
@@ -64,7 +60,11 @@
                 <div></div>
             </div>
             <div class="prdt-logo">
-                <img src="{{ asset('electronics-shop/images/grocito-logo.png') }}">
+                @if ($seller)
+                    <a href="{{ $seller->storeLink }}" wire:navigate.hover>
+                        <img src="{{ $seller->storeLogo }}" alt="Store Logo">
+                    </a>
+                @endif
             </div>
         </div>
         <div class="search-icn-wrap d-flex align-items-center">
@@ -78,14 +78,9 @@
                                 <input type="search" autocomplete="off" class="search-in product-search" placeholder="Search for Products" autocapitalize="off">
                                 <div class="in-search-icn"><i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i></div>
                             </div>
-                        <div class="search-open-box" style="display: none;">
+                            <div class="search-open-box" style="display: none;">
 
-                            <div class="search-open-sngl d-flex align-items-center">
-                                <img src="images/search-open.webp">
-                                <p class="mb-0">Pants for men</p>
                             </div>
-
-                        </div>
                         </div>
                     </form>
                 </div>
@@ -97,35 +92,33 @@
                 <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i>
             </div>
         </div>
+
         <div class="hamburger-prdt-catg" id="sidebar">
             <div class="sidebar-cross">
                 <a href="javascript:void(0)" onclick="toggleHide(this)">
                     <img src="{{ asset('electronics-shop/images/close.png') }}">
                 </a>
             </div>
+        
             <div class="sidebar-inner">
                 <div class="sidebar-head">
-                    <h3>Category</h3>
+                    <h3>Categories</h3>
                 </div>
                 <div class="single-dropdown">
-                    <button class="toggle sidebar-filter-btn toggle-btn-main mb-2">Mens</button>
+                    <button class="toggle sidebar-filter-btn toggle-btn-main mb-2">Categories</button>
                     <ul class="list list-main">
 
-                        <li class="list-item" style="--delay:0.2s">
-                           <div class="single-dropdown sub-dropdown">
-                                <button class="toggle mb-2 sidebar-filter-btn toggle-btn-inner">Classic</button>
-                                <ul class="list list-item-inner">
-                                    <li class="list-item" style="--delay:0.2s"> 
-                                        <a href="#">Classic Shirt</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        @foreach($categories as $category)
+                            <li class="list-item" style="--delay:0.2s">
+                                <a href="{{ route('electronics-products-by-category', ['seller_id' => $seller_id, 'category_id' => $category->id]) }}">{{ $category->CategoryName }}</a>
+                            </li>
+                        @endforeach
                         
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>        
+
     </header>
 
 </div>

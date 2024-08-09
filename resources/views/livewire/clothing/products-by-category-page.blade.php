@@ -117,16 +117,16 @@
                             </div>
                         </div>
                         <div class="mobile-category d-flex d-md-none">
-                            <div class="mobile-ctg-sngl">
-                                <a href="#">
-                                    <p class="mb-0">Printed T Shirts</p>
-                                </a>
-                            </div>
-                            <div class="mobile-ctg-sngl">
-                                <a href="#">
-                                    <p class="mb-0">Plain T Shirts</p>
-                                </a>
-                            </div>
+
+                            @foreach ($subCategories as $subCategory)
+                                <div class="mobile-ctg-sngl">
+                                    <a href="javascript:void(0)"
+                                    wire:click="toggleSubCategory({{ $subCategory->id }})">
+                                        <p class="mb-0">{{ $subCategory->CategoryName }}</p>
+                                    </a>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -237,211 +237,49 @@
                                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
                                         data-bs-target="#v-pills-profile" type="button" role="tab"
                                         aria-controls="v-pills-profile" aria-selected="false">Brand</button>
-                                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-messages" type="button" role="tab"
-                                        aria-controls="v-pills-messages" aria-selected="false">Gender</button>
-                                    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-settings" type="button" role="tab"
-                                        aria-controls="v-pills-settings" aria-selected="false">Discount</button>
-                                    <button class="nav-link" id="v-pills-sleeves-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-sleeves" type="button" role="tab"
-                                        aria-controls="v-pills-size" aria-selected="false">Sleeves</button>
-                                    <button class="nav-link" id="v-pills-collor-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-collar" type="button" role="tab"
-                                        aria-controls="v-pills-size" aria-selected="false">Collar</button>
-                                    <button class="nav-link" id="v-pills-fabric-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-fabric" type="button" role="tab"
-                                        aria-controls="v-pills-size" aria-selected="false">fabric</button>
-                                    <button class="nav-link" id="v-pills-pattern-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-patten" type="button" role="tab"
-                                        aria-controls="v-pills-size" aria-selected="false">Pattern</button>
-                                    <button class="nav-link" id="v-pills-occassion-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-occassion" type="button" role="tab"
-                                        aria-controls="v-pills-size" aria-selected="false">Occassion</button>
-                                    <button class="nav-link" id="v-pills-color-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-color" type="button" role="tab"
-                                        aria-controls="v-pills-size" aria-selected="false">Color</button>
-                                    <button class="nav-link" id="v-pills-fit-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-color" type="button" role="tab"
-                                        aria-controls="v-pills-fit" aria-selected="false">Fit</button>
-                                    <button class="nav-link" id="v-pills-collection-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-collection" type="button" role="tab"
-                                        aria-controls="v-pills-fit" aria-selected="false">Collection</button>
+                                    <button class="nav-link" id="v-pills-subcategory-tab" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-subcategory" type="button" role="tab"
+                                        aria-controls="v-pills-subcategory" aria-selected="false">Sub Categories</button>
+                                    <button class="nav-link" id="v-pills-size-tab" data-bs-toggle="pill"
+                                        data-bs-target="#v-pills-size" type="button" role="tab"
+                                        aria-controls="v-pills-size" aria-selected="false">Sizes</button>
                                 </div>
-                                <div class="tab-content  flt-inner-rgt" id="v-pills-tabContent">
-                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                                        aria-labelledby="v-pills-home-tab">
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Price">
-                                            <label for="Price">Rs. 250 - Rs. 399</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Price-1">
-                                            <label for="Price-1">Rs. 400 - Rs. 499</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Price-2">
-                                            <label for="Price-2">Rs. 500 - Rs. 699</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Price-3">
-                                            <label for="Price-3">Rs. 700 - Rs. 899</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Price-4">
-                                            <label for="Price-4">Rs. 900 - Rs. 999</label>
+                                <div class="tab-content flt-inner-rgt" id="v-pills-tabContent">
+
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                        <div class="price-range">
+                                            <input type="number" wire:model.lazy="min_price" placeholder="Min Price">
+                                            <input type="number" wire:model.lazy="max_price" placeholder="Max Price">
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                        aria-labelledby="v-pills-profile-tab">
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand">
-                                            <label for="Brand">Highlander</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-1">
-                                            <label for="Brand-1">Allen Solly</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-2">
-                                            <label for="Brand-2">U.S. Poli Assn.</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-3">
-                                            <label for="Brand-3">The Indian Garage</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-4">
-                                            <label for="Brand-4">Mufti</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-5">
-                                            <label for="Brand-5">WROGN</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-6">
-                                            <label for="Brand-6">BEING HUMAN</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-7">
-                                            <label for="Brand-7">PETER ENGLAND</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-8">
-                                            <label for="Brand-8">ARROW</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-9">
-                                            <label for="Brand-9">kILLER</label>
-                                        </div>
+
+                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                        @foreach ($brands as $brand)
+                                            <div class="form-group">
+                                                <input type="checkbox" id="brand-{{ $brand }}" wire:click="filterByBrand('{{ $brand }}')">
+                                                <label for="brand-{{ $brand }}">{{ $brand }}</label>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                                        aria-labelledby="v-pills-messages-tab">
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Gender">
-                                            <label for="Gender">Men</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Women">
-                                            <label for="Women">Women</label>
-                                        </div>
+
+                                    <div class="tab-pane fade" id="v-pills-subcategory" role="tabpanel" aria-labelledby="v-pills-subcategory-tab">
+                                        @foreach ($subCategories as $subCategory)
+                                            <div class="form-group">
+                                                <input type="checkbox" id="sub-category-{{ $subCategory->id }}" wire:model.live="selected_sub_categories" value="{{ $subCategory->id }}">
+                                                <label for="sub-category-{{ $subCategory->id }}">{{ $subCategory->CategoryName }}</label>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                                        aria-labelledby="v-pills-settings-tab">
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Discount-1">
-                                            <label for="Discount-1">50% or more</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Discount-2">
-                                            <label for="Discount-2">30% or more</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Discount-3">
-                                            <label for="Discount-3">40% or more</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Discount-4">
-                                            <label for="Discount-4">60% or more</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Discount-5">
-                                            <label for="Discount-5">70% or more</label>
-                                        </div>
+
+                                    <div class="tab-pane fade" id="v-pills-size" role="tabpanel" aria-labelledby="v-pills-size-tab">
+                                        @foreach ($sizes as $size)
+                                            <div class="form-group">
+                                                <input type="checkbox" id="size-{{ $size }}" wire:click="filterBySize('{{ $size }}')">
+                                                <label for="size-{{ $size }}">{{ $size }}</label>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="tab-pane fade" id="v-pills-sleeves" role="tabpanel"
-                                        aria-labelledby="v-pills-sleeves-tab">
-                                        <div class="form-group">
-                                            <input type="checkbox" id="sleeve-1">
-                                            <label for="sleeve-1">3/4 Sleeves</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="sleeve-2">
-                                            <label for="sleeve-2">Full Sleeves</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="sleeve-3">
-                                            <label for="sleeve-3">Half Sleeves</label>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="v-pills-collar" role="tabpanel"
-                                        aria-labelledby="v-pills-collor-tab">
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-1">
-                                            <label for="Collor-1">Built-up</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-2">
-                                            <label for="Collor-2">Button Down</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-3">
-                                            <label for="Collor-3">Club</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-4">
-                                            <label for="Collor-4">Cut Away</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-5">
-                                            <label for="Collor-5">Hood</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-6">
-                                            <label for="Collor-6">Lapel</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-7">
-                                            <label for="Collor-7">Mandarin</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-8">
-                                            <label for="Collor-8">Peter Pan</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-9">
-                                            <label for="Collor-9">Ribbed Color</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Collor-10">
-                                            <label for="Collor-10">Spread</label>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="v-pills-fabric" role="tabpanel"
-                                        aria-labelledby="v-pills-fabric-tab">...</div>
-                                    <div class="tab-pane fade" id="v-pills-patten" role="tabpanel"
-                                        aria-labelledby="v-pills-pattern-tab">...</div>
-                                    <div class="tab-pane fade" id="v-pills-occassion" role="tabpanel"
-                                        aria-labelledby="v-pills-occassion-tab">...</div>
-                                    <div class="tab-pane fade" id="v-pills-color" role="tabpanel"
-                                        aria-labelledby="v-pills-color-tab">...</div>
-                                    <div class="tab-pane fade" id="v-pills-fit" role="tabpanel"
-                                        aria-labelledby="v-pills-fit-tab">...</div>
-                                    <div class="tab-pane fade" id="v-pills-collection" role="tabpanel"
-                                        aria-labelledby="v-pills-collection-tab">...</div>
-                                    <!-- <div class="apply-filter-button d-flex">
-                            <a href="#">Apply Filter</a>
-                        </div> -->
+
                                 </div>
                             </div>
                         </div>
@@ -450,10 +288,11 @@
             </div>
         </div>
 
+
         {{-- Sort Modal --}}
 
         <div class="modal fade sort-modal" id="exampleModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -464,32 +303,33 @@
                             </button>
                         </div>
                         <div class="modal-header-rgt">
-                            <p class="mb-0 fs-14">Clear Filter</p>
+                            <a href="javascript:void(0)" wire:click="clearFilters">Clear all</a>
                         </div>
                     </div>
                     <div class="modal-body filter-mobile-inner">
                         <div class="sort-inner">
                             <div class="sort-inner-sngl d-flex justify-content-between">
-                                <div><label for="html">Popularity</label></div>
-                                <div><input type="radio" id="html" name="fav_language" value="HTML"></div>
+                                <div><label for="popularity">Popularity</label></div>
+                                <div><input type="radio" id="popularity" name="sort_by" value="popularity" wire:model="sort_by"></div>
                             </div>
                             <div class="sort-inner-sngl d-flex justify-content-between">
-                                <div><label for="html">Price -- Low to High</label></div>
-                                <div><input type="radio" id="html" name="fav_language" value="HTML"></div>
+                                <div><label for="price_low_to_high">Price -- Low to High</label></div>
+                                <div><input type="radio" id="price_low_to_high" name="sort_by" value="price_low_to_high" wire:model="sort_by"></div>
                             </div>
                             <div class="sort-inner-sngl d-flex justify-content-between">
-                                <div><label for="html">Price -- High to Low</label></div>
-                                <div><input type="radio" id="html" name="fav_language" value="HTML"></div>
+                                <div><label for="price_high_to_low">Price -- High to Low</label></div>
+                                <div><input type="radio" id="price_high_to_low" name="sort_by" value="price_high_to_low" wire:model="sort_by"></div>
                             </div>
                             <div class="sort-inner-sngl d-flex justify-content-between">
-                                <div><label for="html">Newest First</label></div>
-                                <div><input type="radio" id="html" name="fav_language" value="HTML"></div>
+                                <div><label for="newest_first">Newest First</label></div>
+                                <div><input type="radio" id="newest_first" name="sort_by" value="newest_first" wire:model="sort_by"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    
 
         {{-- Add to Cart Modal --}}
 
@@ -588,7 +428,6 @@
                 </div>
             </div>
         </div>
-
 
     </section>
 

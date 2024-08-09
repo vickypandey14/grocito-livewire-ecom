@@ -32,7 +32,7 @@
 
     @if($categories->isEmpty())
 
-        <h5 class="text-center mt-5">No categories found for this seller.</h5>
+        <h5 class="text-center mt-5">No categories are found for this seller.</h5>
         
     @else
 

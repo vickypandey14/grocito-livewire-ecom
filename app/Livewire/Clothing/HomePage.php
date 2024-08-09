@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Clothing;
 
 
 use App\Models\SellerBanner;
-use App\Models\UserBanner;
 use App\Models\Product;
 use App\Models\BusinessCategory;
 use App\Models\Category;
@@ -12,7 +11,6 @@ use App\Models\Seller;
 use App\Models\Wishlist as WishlistModel;
 use Livewire\Component;
 use Livewire\Attributes\Title;
-use Illuminate\Support\Facades\Auth;
 
 #[Title('Clothing Category Template Home - Grocito')]
 
@@ -21,6 +19,8 @@ class HomePage extends Component
     public $seller_id;
     
     public $wishlist;
+
+    public $selectedProduct = null;
 
     public function mount($seller_id)
     {
@@ -56,6 +56,14 @@ class HomePage extends Component
             $this->wishlist[] = $productId;
         }
     }
+
+    public function selectProduct($productId)
+    {
+        $this->selectedProduct = Product::with(['category', 'product_stock'])->find($productId);
+        
+        // dd($this->selectedProduct);
+    }
+
 
     public function render()
     {

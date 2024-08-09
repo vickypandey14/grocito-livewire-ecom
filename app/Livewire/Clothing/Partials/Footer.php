@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Partials;
+namespace App\Livewire\Clothing\Partials;
 
 use Livewire\Component;
 use App\Models\Seller;
@@ -29,7 +29,7 @@ class Footer extends Component
 
     public function render()
     {
-        return view('livewire.partials.footer', [
+        return view('livewire.clothing.partials.footer', [
             'seller' => $this->seller,
         ]);
     }

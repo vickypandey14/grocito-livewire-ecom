@@ -19,6 +19,10 @@ class Footer extends Component
         $sellerId = 17;
 
         $this->seller = Seller::find($sellerId);
+
+        // $this->seller = Seller::with('user')->find($sellerId);
+
+        // dd($this->seller);
     }
 
     public function render()

@@ -79,18 +79,22 @@
     </footer>
 
     <div class="mobile-nav-bottom d-md-none">
-        <a href="">
+        @php
+            $seller_id = '17';
+        @endphp
+
+        <a href="{{ route('restaurant-shop-home', $seller_id) }}" wire:navigate>
             <i class="fa-solid fa-house" style="color: #6e7191;"></i>
             <span>Home</span>
         </a>
-        <a href="#">
+        <a href="{{ route('restaurant-shop-menu', $seller_id) }}" wire:navigate>
             <i class="fa-solid fa-layer-group" style="color: #6e7191;"></i>
             <span>Menu</span>
         </a>
         <a href="#">
             <i class="fa-solid fa-bag-shopping" style="color: #6e7191;"></i>
         </a>
-        <a href="#">
+        <a href="{{ route('restaurant-shop-offer', $seller_id) }}" wire:navigate>
             <i class="fa-solid fa-tags" style="color: #6e7191;"></i>
             <span>Offers</span>
         </a>

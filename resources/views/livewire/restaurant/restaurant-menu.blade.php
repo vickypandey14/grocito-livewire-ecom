@@ -1,8 +1,9 @@
 <div>
 
-    <section class="menu-category-items pb-4">
+    <section class="menu-category-items pb-4">        
         <div class="container">
-            <div class="menu-category">
+            <h4>Menu</h4>
+            <div class="menu-category mt-3">
                 <div class="swiper swiper-category">
                     <div class="swiper-wrapper">
 

@@ -159,10 +159,9 @@
             </section>
         @endif
 
-
     </div>
 
-    <!-- Add to Cart Modal -->
+    <!-- Product Add to Cart Modal -->
     
     <div class="modal fade add-popup" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalTitle" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -255,7 +254,6 @@
                                 @endforeach   
                                 
                                 
-    
                             </div>
                         </div>
                         <div class="add-to-cart">
@@ -268,7 +266,7 @@
     </div>
     
  
-    <!-- product click detail popup -->
+    <!-- product detail modal -->
 
     <div class="modal fade prdt-detail" id="productDetailModal" tabindex="-1" role="dialog" aria-labelledby="productDetailModalTitle" aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-dialog-centered" role="document">

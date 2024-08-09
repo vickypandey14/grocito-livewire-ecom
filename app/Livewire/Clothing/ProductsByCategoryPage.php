@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Clothing;
 
 use App\Models\Product;
 use App\Models\Category;
@@ -40,6 +40,8 @@ class ProductsByCategoryPage extends Component
     public $max_price;
 
     public $wishlist;
+
+    public $sort_by = 'popularity';
 
     public function mount($seller_id, $category_id)
     {
@@ -174,6 +176,22 @@ class ProductsByCategoryPage extends Component
             $query->whereHas('product_stock', function($q) {
                 $q->where('price', '<=', $this->max_price);
             });
+        }
+
+        switch ($this->sort_by) {
+            case 'price_low_to_high':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'price_high_to_low':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'newest_first':
+                $query->orderBy('created_at', 'desc');
+                break;
+            case 'popularity':
+            default:
+                $query->orderBy('no_of_sale', 'desc');
+                break;
         }
 
         $products = $query->get();

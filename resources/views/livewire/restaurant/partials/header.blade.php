@@ -4,7 +4,11 @@
             <div class="site-header-inner d-flex align-items-center">
                 <div class="header-left d-flex align-items-center">
                     <div class="header-left-logo">
-                        <img src="{{ asset('restaurant-shop/images/grocito-new-logo.png') }}">
+                        @if ($seller)
+                            <a href="{{ $seller->storeLink }}" wire:navigate.hover>
+                                <img src="{{ $seller->storeLogo }}" alt="Store Logo">
+                            </a>
+                        @endif
                     </div>
                     <div class="delivery" onclick="openLocationDialog()">
                         <div class="deliveryTime">Delivery In 1 Hour</div>

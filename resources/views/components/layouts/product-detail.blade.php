@@ -19,13 +19,13 @@
 
 <body>
 
-    @livewire('partials.navbar')
+    @livewire('clothing.partials.navbar')
 
     <div class="main-wrap">
         {{ $slot }}
     </div>
 
-    @livewire('partials.footer')
+    @livewire('clothing.partials.footer')
 
     <script src="{{ asset('shop/js/jquery.min.js') }}"></script>
     <script src="{{ asset('shop/js/bootstrap.min.js') }}"></script>

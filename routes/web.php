@@ -3,13 +3,13 @@
 use App\Livewire\Electronics\ElectronicProductDetail;
 use App\Livewire\Electronics\ElectronicProductsByCategory;
 use App\Livewire\Electronics\ElectronicsHome;
-use App\Livewire\HomePage;
-use App\Livewire\ProductsByCategoryPage;
+use App\Livewire\Clothing\HomePage;
+use App\Livewire\Clothing\ProductsByCategoryPage;
 use App\Livewire\Restaurant\RestaurantHome;
 use App\Livewire\Restaurant\RestaurantMenu;
 use App\Livewire\Restaurant\RestaurantOffer;
-use App\Livewire\Wishlist;
-use App\Livewire\ProductDetailPage;
+use App\Livewire\Clothing\Wishlist;
+use App\Livewire\Clothing\ProductDetailPage;
 use Illuminate\Support\Facades\Route;
 
 

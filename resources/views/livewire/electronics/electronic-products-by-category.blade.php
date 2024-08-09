@@ -34,10 +34,25 @@
 
                                     <div class="single-dropdown">
                                         <h3 class="sidebar-filter-btn mb-2 toggle-btn-main">Price Range</h3>
-                                        <div class="price-range">
+                                        <div class="price-range" style="border: none;">
                                             <input type="number" wire:model.lazy="min_price" wire:change="filterByPriceRange" placeholder="Min Price">
                                             <input type="number" wire:model.lazy="max_price" wire:change="filterByPriceRange" placeholder="Max Price">
                                         </div>
+                                    </div>
+                                    <hr>
+
+                                    <div class="single-dropdown">
+                                        <h3 class="sidebar-filter-btn mb-2 toggle-btn-main">Sub Categories</h3>
+                                        <ul class="lists list-main">
+                                            @foreach ($subcategories as $subcategory)
+                                                <li class="list-item" style="--delay:0.2s">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" id="subcategory-{{ $subcategory->id }}" wire:click="filterBySubcategory({{ $subcategory->id }})">
+                                                        <label for="subcategory-{{ $subcategory->id }}">{{ $subcategory->CategoryName }}</label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
 
                                 </div>
@@ -82,16 +97,15 @@
 
 
                         <div class="mobile-category d-flex d-md-none">
-                            <div class="mobile-ctg-sngl">
-                                <a href="#">
-                                    <p class="mb-0">Printed T Shirts</p>
-                                </a>
-                            </div>
-                            <div class="mobile-ctg-sngl">
-                                <a href="#">
-                                    <p class="mb-0">Plain T Shirts</p>
-                                </a>
-                            </div>
+                            
+                            @foreach ($subcategories as $subcategory)
+                                <div class="mobile-ctg-sngl">
+                                    <a href="#" wire:click.prevent="filterBySubcategory({{ $subcategory->id }})">
+                                        <p class="mb-0">{{ $subcategory->CategoryName }}</p>
+                                    </a>
+                                </div>
+                            @endforeach
+
                         </div>
 
                     </div>
@@ -102,14 +116,18 @@
                         <div class="desktop-catg-wrap d-none d-md-block">
                             <div class="desktop-category-wrap d-flex ">
 
-                                <div class="desktop-ctg-sngl">
-                                    <a href="#">
-                                        <p class="mb-0">Techno Pova</p>
-                                    </a>
-                                </div>
+                                {{-- sub category here --}}
+                                @foreach ($subcategories as $subcategory)
+                                    <div class="desktop-ctg-sngl">
+                                        <a href="#" wire:click.prevent="filterBySubcategory({{ $subcategory->id }})">
+                                            <p class="mb-0">{{ $subcategory->CategoryName }}</p>
+                                        </a>
+                                    </div>
+                                @endforeach
 
                             </div>
                         </div>
+
                         <div class="product-dtl-rgt-inner mt-3">
                             @php
                                 $seller_id = '16';
@@ -164,7 +182,7 @@
 
                             @empty
 
-                                <h4 class="mx-auto">No Products are found for this Category!</h4>
+                                <h4 class="mx-auto text-center mt-4">No Products are found for this Category!</h4>
 
                             @endforelse
 
@@ -227,7 +245,7 @@
         {{-- Filter and Sort by Modals for Mobile Devices --}}
 
         <div class="modal fade filter-modal" id="exampleModal-1" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -238,47 +256,67 @@
                             </button>
                         </div>
                         <div class="modal-header-rgt" style="display: none;">
-                            <p class="mb-0 fs-16">Clear Filter</p>
+                            <a href="javascript:void(0)" wire:click="clearFilters">Clear all</a>
                         </div>
                         <div class="apply-filter-button d-flex">
-                            <a href="#">Apply Filter</a>
+                            <a href="javascript:void(0)" wire:click="clearFilters">Clear all</a>
                         </div>
                     </div>
                     <div class="modal-body filter-mobile-inner">
                         <div class="filter-data mt-4 sec-center">
                             <div class="d-flex align-items-start filter-data-inner">
                                 <div class="nav flex-column nav-pills me-3 flt-inner-left" id="v-pills-tab"
-                                    role="tablist" aria-orientation="vertical">
-                                    <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-home" type="button" role="tab"
-                                        aria-controls="v-pills-home" aria-selected="true">Price</button>
-
-                                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                        data-bs-target="#v-pills-profile" type="button" role="tab"
-                                        aria-controls="v-pills-profile" aria-selected="false">Brand</button>
+                                        role="tablist" aria-orientation="vertical">
+                                    <button class="nav-link active" id="v-pills-price-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-price" type="button" role="tab"
+                                            aria-controls="v-pills-price" aria-selected="true">Price</button>
+        
+                                    <button class="nav-link" id="v-pills-brand-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-brand" type="button" role="tab"
+                                            aria-controls="v-pills-brand" aria-selected="false">Brand</button>
+        
+                                    <button class="nav-link" id="v-pills-subcategory-tab" data-bs-toggle="pill"
+                                            data-bs-target="#v-pills-subcategory" type="button" role="tab"
+                                            aria-controls="v-pills-subcategory" aria-selected="false">Subcategory</button>
                                 </div>
-                                <div class="tab-content  flt-inner-rgt" id="v-pills-tabContent">
-                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
-                                        aria-labelledby="v-pills-home-tab">
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Price">
-                                            <label for="Price">Rs. 250 - Rs. 399</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Price-1">
-                                            <label for="Price-1">Rs. 400 - Rs. 499</label>
+                                <div class="tab-content flt-inner-rgt" id="v-pills-tabContent">
+                                    <!-- Price Range Filter -->
+                                    <div class="tab-pane fade show active" id="v-pills-price" role="tabpanel"
+                                            aria-labelledby="v-pills-price-tab">
+                                        <div class="price-range">
+                                            <input type="number" wire:model.lazy="min_price" wire:change="filterByPriceRange" placeholder="Min Price">
+                                            <input type="number" wire:model.lazy="max_price" wire:change="filterByPriceRange" placeholder="Max Price">
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                        aria-labelledby="v-pills-profile-tab">
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand">
-                                            <label for="Brand">Highlander</label>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="checkbox" id="Brand-1">
-                                            <label for="Brand-1">Allen Solly</label>
-                                        </div>
+                                    
+                                    <!-- Brand Filter -->
+                                    <div class="tab-pane fade" id="v-pills-brand" role="tabpanel"
+                                            aria-labelledby="v-pills-brand-tab">
+                                        <ul class="lists list-main">
+                                            @foreach ($brands as $brand)
+                                                <li class="list-item" style="--delay:0.2s">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" id="brand-{{ $brand }}" wire:click="filterByBrand('{{ $brand }}')">
+                                                        <label for="brand-{{ $brand }}">{{ $brand }}</label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+        
+                                    <!-- Subcategory Filter -->
+                                    <div class="tab-pane fade" id="v-pills-subcategory" role="tabpanel"
+                                            aria-labelledby="v-pills-subcategory-tab">
+                                        <ul class="lists list-main">
+                                            @foreach ($subcategories as $subcategory)
+                                                <li class="list-item" style="--delay:0.2s">
+                                                    <div class="form-group">
+                                                        <input type="checkbox" id="subcategory-{{ $subcategory->id }}" wire:click="filterBySubcategory({{ $subcategory->id }})">
+                                                        <label for="subcategory-{{ $subcategory->id }}">{{ $subcategory->CategoryName }}</label>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -288,8 +326,10 @@
             </div>
         </div>
 
+        {{-- Sort Modal --}}
+
         <div class="modal fade sort-modal" id="exampleModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -300,26 +340,29 @@
                             </button>
                         </div>
                         <div class="modal-header-rgt">
-                            <p class="mb-0 fs-14">Clear Filter</p>
+                            <p class="mb-0 fs-14" wire:click="clearSort">Clear Sort</p>
                         </div>
                     </div>
                     <div class="modal-body filter-mobile-inner">
                         <div class="sort-inner">
                             <div class="sort-inner-sngl d-flex justify-content-between">
-                                <div><label for="html">Popularity</label></div>
-                                <div><input type="radio" id="html" name="fav_language" value="HTML">
-                                </div>
+                                <div><label for="popularity">Popularity</label></div>
+                                <div><input type="radio" id="popularity" name="sort_option" value="popularity" wire:model="sortBy"></div>
                             </div>
                             <div class="sort-inner-sngl d-flex justify-content-between">
-                                <div><label for="html">Price -- Low to High</label></div>
-                                <div><input type="radio" id="html" name="fav_language" value="HTML">
-                                </div>
+                                <div><label for="low_to_high">Price -- Low to High</label></div>
+                                <div><input type="radio" id="low_to_high" name="sort_option" value="price_low_to_high" wire:model="sortBy"></div>
+                            </div>
+                            <div class="sort-inner-sngl d-flex justify-content-between">
+                                <div><label for="high_to_low">Price -- High to Low</label></div>
+                                <div><input type="radio" id="high_to_low" name="sort_option" value="price_high_to_low" wire:model="sortBy"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+   
 
     </section>
 </div>
